@@ -9,13 +9,15 @@ import { LoginComponent } from './component/shared/routed/login/login.component'
 import { MenuComponent } from './component/shared/unrouted/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AjaxService } from './service/ajax.service.service';
+import { DeveloperPlistAdminRoutedComponent } from './component/application/developer/routed/admin/developer-plist-admin-routed/developer-plist-admin-routed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    MenuComponent
+    MenuComponent,
+    DeveloperPlistAdminRoutedComponent
   ],
   imports: [    
     BrowserModule,
