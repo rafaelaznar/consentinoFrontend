@@ -14,7 +14,7 @@ export class AjaxService {
   ) { }
 
   getOne(id: number): Observable<IProducto> {
-    return this.oHttpClient.get<IProducto>("http://localhost:8082/producto/" + id);
+    return this.oHttpClient.get<IProducto>("http://localhost:8082/developer/" + id);
   }
 
 }
