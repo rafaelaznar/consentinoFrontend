@@ -1,21 +1,54 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
-      <h1>Superheroes</h1>
+      <h1 class="text-center mb-5">Lista de Developers</h1>
+      <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
+          <app-search-unrouted [placeHolder]="placeHolder" (onSearch)="setTermino( $event )" ></app-search-unrouted>
+          <app-dropdown-register-page class="mx-2" [PageSize]="this.getPageRegister()" (eeRpp)="this.setPageRegister($event)"></app-dropdown-register-page>
+      </div>
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Surname</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Issues</th>
+            <th>Teams</th>
+            <th>Resolutions</th>
+            <th>Helps</th>
+            <th>Team</th>
+            <th>Usertype</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let hero of heroes">
-            <td>{{hero.id}}</td>
-            <td>{{hero.name}}</td>
+          <tr *ngFor="let developer of this.getPlistContent()">
+            <td>{{developer.id}}</td>
+            <td>{{developer.name}}</td>
+            <td>{{developer.surname}}</td>
+            <td>{{developer.lastname}}</td>
+            <td>{{developer.email}}</td>
+            <td>{{developer.username}}</td>
+            <td>{{developer.issues}}</td>
+            <td>{{developer.teams}}</td>
+            <td>{{developer.resolutions}}</td>
+            <td>{{developer.helps}}</td>
+            <td>{{developer.team.name}}</td>
+            <td>{{developer.usertype.name}}</td>
+            <td>
+              <button class="btn btn-outline-primary"> <fa-icon [icon]="faEye"></fa-icon> </button>
+              <button class="btn btn-outline-warning"> <fa-icon [icon]="faUserPen"></fa-icon> </button>
+              <button class="btn btn-outline-danger"> <fa-icon [icon]="faTrash"></fa-icon> </button>
+            </td>
           </tr>
         </tbody>
       </table>
+      <div class="col-md text-center">
+          <app-pagination [pagesCount]="this.getpagesCount()" (emitNumberPage)="getNumberPage( $event )" ></app-pagination>
+      </div>
     </div>
   </div>
 </div>

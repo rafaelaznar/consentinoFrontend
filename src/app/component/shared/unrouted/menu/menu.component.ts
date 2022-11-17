@@ -6,14 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  token: string | null = null;
-  constructor(
-    
 
-  ) {
-    this.token = localStorage.getItem("token");
-    console.log("menu.component: token", this.token);    
-  }
+  constructor() { }
 
   ngOnInit() {
   }

@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <h1></h1>
+        <div class="col-md text-end mb-3">
+            <app-dropdown-register-page [PageSize]="this.getPageRegister()" (eeRpp)="this.setPageRegister($event)"></app-dropdown-register-page>
+        </div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usertype of this.getPlistContent()">
+              <td>{{usertype.id}}</td>
+              <td>{{usertype.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-md text-center">
+            <app-pagination [pagesCount]="this.getpagesCount()" (emitNumberPage)="getNumberPage( $event )" ></app-pagination>
+          </div>
+      </div>
+    </div>
+  </div>
