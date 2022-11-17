@@ -12,7 +12,7 @@ import { AjaxService } from 'src/app/service/ajax.service.service';
 export class LoginComponent implements OnInit {
 
   id: number = 0;
-  oProduct: IProducto | null = null;
+  oProduct: any | null = null;
 
   constructor(
     private oActivatedRoute: ActivatedRoute,
@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   showProduct() {
-    this.oHttpClient.get<IProducto>("http://localhost:8082/producto/" + this.id)
-      .subscribe((data: IProducto) => {
+    this.oHttpClient.get<any>("http://localhost:8082/developer/" + this.id)
+      .subscribe((data: any) => {
         console.log(data);
         this.oProduct = data;
       }, (error: HttpErrorResponse) => {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   showProduct2() {
     this.oAjaxService.getOne(this.id)
-      .subscribe((data: IProducto) => {
+      .subscribe((data: any) => {
         console.log(data);
         this.oProduct = data;
       }, (error: HttpErrorResponse) => {

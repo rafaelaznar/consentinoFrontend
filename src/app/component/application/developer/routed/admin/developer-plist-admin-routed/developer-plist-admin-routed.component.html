@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <h1>Superheroes</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hero of heroes">
+            <td>{{hero.id}}</td>
+            <td>{{hero.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/shared/routed/home/home.component';
@@ -10,6 +9,7 @@ import { MenuComponent } from './component/shared/unrouted/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AjaxService } from './service/ajax.service.service';
 import { Login2Component } from './component/shared/routed/login2/login2.component';
+import { DeveloperPlistAdminRoutedComponent } from './component/application/developer/routed/admin/developer-plist-admin-routed/developer-plist-admin-routed.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { Login2Component } from './component/shared/routed/login2/login2.compone
     HomeComponent,
     LoginComponent,
     MenuComponent,
-    Login2Component
+    Login2Component,
+    DeveloperPlistAdminRoutedComponent
   ],
   imports: [    
     BrowserModule,
