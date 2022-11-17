@@ -10,6 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AjaxService } from './service/ajax.service.service';
 import { Login2Component } from './component/shared/routed/login2/login2.component';
 import { DeveloperPlistAdminRoutedComponent } from './component/application/developer/routed/admin/developer-plist-admin-routed/developer-plist-admin-routed.component';
+import { DeveloperViewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-view-admin-routed/developer-view-admin-routed.component';
+import { UsertypePlistAdminRoutedComponent } from './component/application/usertype/routed/admin/usertype-plist-admin-routed/usertype-plist-admin-routed.component';
+import { PaginationComponent } from './component/shared/unrouted/pagination/pagination.component';
+import { SearchUnroutedComponent } from './component/shared/unrouted/search-unrouted/search-unrouted.component';
+import { DropdownRegisterPageComponent } from './component/shared/unrouted/dropdown-register-page/dropdown-register-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,14 +24,20 @@ import { DeveloperPlistAdminRoutedComponent } from './component/application/deve
     LoginComponent,
     MenuComponent,
     Login2Component,
-    DeveloperPlistAdminRoutedComponent
+    DeveloperPlistAdminRoutedComponent,
+    DeveloperViewAdminRoutedComponent,
+    UsertypePlistAdminRoutedComponent,
+    PaginationComponent,
+    SearchUnroutedComponent,
+    DropdownRegisterPageComponent
   ],
-  imports: [    
+  imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     AjaxService
