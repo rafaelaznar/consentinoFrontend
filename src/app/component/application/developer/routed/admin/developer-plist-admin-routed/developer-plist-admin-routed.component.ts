@@ -9,65 +9,73 @@ import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './developer-plist-admin-routed.component.html',
   styleUrls: ['./developer-plist-admin-routed.component.css']
 })
+
 export class DeveloperPlistAdminRoutedComponent implements OnInit {
 
   private pListContent!: Developer[];
   private pagesCount!: number;
-  private numberPage : number= 0;
+  private numberPage: number = 0;
   private pageRegister: number = 5;
   private termino: string = "";
-
-  placeHolder: string = "Buscar developer";
+  
   faEye = faEye;
   faUserPen = faUserPen;
   faTrash = faTrash;
 
-  constructor( private oDeveloperService: DeveloperService ) { }
+  constructor(
+    private oDeveloperService: DeveloperService
+  ) { }
 
   ngOnInit() {
-    this.getPlist();
+    this.getPage();
   }
 
-  getPlist(){
+  getPage() {
     this.oDeveloperService.getDevelopersPlist(this.numberPage, this.pageRegister, this.termino)
-    .subscribe({
-      next: (resp : DeveloperResponse) =>{
-        this.pListContent = resp.content;
-        console.log(this.pListContent);
-        this.pagesCount = resp.totalPages;
-      },
-      error: (err: HttpErrorResponse) =>{
-        console.log(err);
-      }
-    })
+      .subscribe({
+        next: (resp: DeveloperResponse) => {
+          this.pListContent = resp.content;
+          console.log(this.pListContent);
+          this.pagesCount = resp.totalPages;
+          this.numberPage = resp.number;
+          console.log("pagina", this.numberPage);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      })
   }
 
-  getPlistContent(): Developer[]{
+  getPageNumber(): number {
+    return this.numberPage;
+  }
+
+  getPlistContent(): Developer[] {
     return this.pListContent;
   }
 
-  getpagesCount(): number{
+  getpagesCount(): number {
     return this.pagesCount;
   }
 
-  getNumberPage( e: number ){
-    this.numberPage = e;
-    this.getPlist();
+  setPage(e: number) {
+    this.numberPage = e - 1;
+    this.getPage();
   }
 
-  getPageRegister():number{
+  getPageRegister(): number {
     return this.pageRegister;
   }
 
-  setPageRegister( registerPage: number ){
+  setRpp(registerPage: number) {
     this.pageRegister = registerPage;
-    this.getPlist();
+    this.getPage();
   }
 
-  setTermino( termino:string):void{
+  setFilter(termino: string): void {
     this.termino = termino;
-    this.numberPage =0;
-    this.getPlist();
+    this.numberPage = 0;
+    this.getPage();
   }
 
 }

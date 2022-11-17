@@ -9,18 +9,18 @@ import { DeveloperResponse } from '../model/developer-interface';
 })
 export class DeveloperService {
 
-  constructor( private oHttp: HttpClient ) { }
+  constructor(private oHttp: HttpClient) { }
 
-  private entityURL= '/developer';
+  private entityURL = '/developer';
 
-  getDevelopersPlist(page: number, size: number, termino: string): Observable<DeveloperResponse>{
+  getDevelopersPlist(page: number, size: number, termino: string): Observable<DeveloperResponse> {
     let params = new HttpParams()
-    .set("filter", termino)
-    .set("page", page)
-    .set("size", size);
+      .set("filter", termino)
+      .set("page", page)
+      .set("size", size);
 
-    const url : string = `${environment.baseURL}${this.entityURL}`;
-    return this.oHttp.get<DeveloperResponse>(url,{params: params});
+    let url: string = `${environment.baseURL}${this.entityURL}`;
+    return this.oHttp.get<DeveloperResponse>(url, { params: params });
   }
 
 }

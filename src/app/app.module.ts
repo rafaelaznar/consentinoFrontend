@@ -16,6 +16,8 @@ import { PaginationComponent } from './component/shared/unrouted/pagination/pagi
 import { SearchUnroutedComponent } from './component/shared/unrouted/search-unrouted/search-unrouted.component';
 import { DropdownRegisterPageComponent } from './component/shared/unrouted/dropdown-register-page/dropdown-register-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaginationUnroutedComponent } from './component/shared/unrouted/pagination-unrouted/pagination-unrouted.component';
+import { PaginationService } from './service/pagination.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UsertypePlistAdminRoutedComponent,
     PaginationComponent,
     SearchUnroutedComponent,
-    DropdownRegisterPageComponent
+    DropdownRegisterPageComponent,
+    PaginationUnroutedComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ],
   providers: [
-    AjaxService
+    AjaxService,
+    PaginationService
   ],
   bootstrap: [AppComponent]
 })
