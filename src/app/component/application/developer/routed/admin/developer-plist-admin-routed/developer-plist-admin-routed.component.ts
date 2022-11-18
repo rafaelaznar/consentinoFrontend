@@ -17,6 +17,7 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
   private numberPage: number = 0;
   private pageRegister: number = 5;
   private termino: string = "";
+  id_usertype: number = 0;
   
   faEye = faEye;
   faUserPen = faUserPen;
@@ -31,7 +32,7 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
   }
 
   getPage() {
-    this.oDeveloperService.getDevelopersPlist(this.numberPage, this.pageRegister, this.termino)
+    this.oDeveloperService.getDevelopersPlist(this.numberPage, this.pageRegister, this.termino,this.id_usertype)
       .subscribe({
         next: (resp: DeveloperResponse) => {
           this.pListContent = resp.content;
@@ -77,5 +78,12 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
     this.numberPage = 0;
     this.getPage();
   }
+
+  filterByUsertype(id: number): void {
+    this.id_usertype = id;
+    this.numberPage = 0;
+    this.getPage();
+  }
+
 
 }

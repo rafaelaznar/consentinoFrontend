@@ -23,21 +23,24 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showProduct2();
+    this.showDeveloper2();
   }
 
-  showProduct() {
-    this.oHttpClient.get<any>("http://localhost:8082/developer/3")
-      .subscribe((data: any) => {
-        console.log(data);
-        this.oProduct = data;
-      }, (error: HttpErrorResponse) => {
-        console.log(error);
+  showDeveloper() {
+    this.oHttpClient.get<any>("http://localhost:8082/developer/" + this.id)
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.oProduct = data;
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error);
+        }
       })
   }
 
-  showProduct2() {
-    this.oAjaxService.getOne(2)
+  showDeveloper2() {
+    this.oAjaxService.getOne(this.id)
       .subscribe((data: any) => {
         console.log(data);
         this.oProduct = data;

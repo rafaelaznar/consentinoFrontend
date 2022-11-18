@@ -13,11 +13,14 @@ export class DeveloperService {
 
   private entityURL = '/developer';
 
-  getDevelopersPlist(page: number, size: number, termino: string): Observable<DeveloperResponse> {
+  getDevelopersPlist(page: number, size: number, termino: string, id_usertype: number): Observable<DeveloperResponse> {
     let params = new HttpParams()
       .set("filter", termino)
       .set("page", page)
       .set("size", size);
+    if (id_usertype != 0) {
+      params = params.set("usertype", id_usertype);
+    }
 
     let url: string = `${environment.baseURL}${this.entityURL}`;
     return this.oHttp.get<DeveloperResponse>(url, { params: params });
