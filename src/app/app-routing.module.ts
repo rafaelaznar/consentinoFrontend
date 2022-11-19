@@ -5,6 +5,7 @@ import { LoginComponent } from './component/shared/routed/login/login.component'
 import { Login2Component } from './component/shared/routed/login2/login2.component';
 import { DeveloperPlistAdminRoutedComponent } from './component/application/developer/routed/admin/developer-plist-admin-routed/developer-plist-admin-routed.component';
 import { UsertypePlistAdminRoutedComponent } from './component/application/usertype/routed/admin/usertype-plist-admin-routed/usertype-plist-admin-routed.component';
+import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'login2', component: Login2Component },
   { path: 'admin/developer/plist', component: DeveloperPlistAdminRoutedComponent },
   { path: 'admin/usertype/plist', component: UsertypePlistAdminRoutedComponent },
+  { path: 'admin/help/plist', component: HelpPlistAdminRoutedComponent },
 ];
 
 @NgModule({
