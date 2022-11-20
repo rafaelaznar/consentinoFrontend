@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center mb-5">Lista de Teams</h1>
+        <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
+          <app-search-unrouted [placeHolder]="'Buscar Team'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+          <app-dropdown-register-page class="mx-2" [PageSize]="this.getPageRegister()" (eeRpp)="this.setRpp($event)">
+          </app-dropdown-register-page>
+        </div>
+        <div class="col-md text-center">
+          <app-pagination-unrouted [nPage]="getPageNumber() + 1" [nTotalPages]="this.getpagesCount()"
+            (eePage)="setPage($event)"></app-pagination-unrouted>
+        </div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Developer</th>
+              <th>Developers</th>
+              <th>project</th>
+              <th>acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let team of this.getPlistContent()">
+              <td>{{team.id}}</td>
+              <td>{{team.name}}</td>
+              <td>{{team.developer}}</td>
+              <td>{{team.developers}}</td>
+              <td>{{team.project}}</td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Herramientas">
+                  <button class="btn btn-sm btn-primary">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-warning">
+                    <fa-icon [icon]="faUserPen"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

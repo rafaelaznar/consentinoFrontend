@@ -18,6 +18,7 @@ import { DropdownRegisterPageComponent } from './component/shared/unrouted/dropd
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginationUnroutedComponent } from './component/shared/unrouted/pagination-unrouted/pagination-unrouted.component';
 import { PaginationService } from './service/pagination.service';
+import { TeamPlistAdminRoutedComponent } from './component/application/team/routed/admin/team-plist-admin-routed/team-plist-admin-routed.component';
 import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { HelpPlistAdminRoutedComponent } from './component/application/help/rout
     SearchUnroutedComponent,
     DropdownRegisterPageComponent,
     PaginationUnroutedComponent,
+    TeamPlistAdminRoutedComponent,
     HelpPlistAdminRoutedComponent
   ],
   imports: [
