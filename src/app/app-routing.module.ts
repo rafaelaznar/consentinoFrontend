@@ -7,6 +7,7 @@ import { DeveloperPlistAdminRoutedComponent } from './component/application/deve
 import { UsertypePlistAdminRoutedComponent } from './component/application/usertype/routed/admin/usertype-plist-admin-routed/usertype-plist-admin-routed.component';
 import { TeamPlistAdminRoutedComponent } from './component/application/team/routed/admin/team-plist-admin-routed/team-plist-admin-routed.component';
 import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
+import { DeveloperViewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-view-admin-routed/developer-view-admin-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login/:id', component: LoginComponent },
   { path: 'login2', component: Login2Component },
   { path: 'admin/developer/plist', component: DeveloperPlistAdminRoutedComponent },
+  { path: 'admin/developer/view/:id', component: DeveloperViewAdminRoutedComponent },
   { path: 'admin/usertype/plist', component: UsertypePlistAdminRoutedComponent },
   { path: 'admin/team/plist', component: TeamPlistAdminRoutedComponent },
   { path: 'admin/help/plist', component: HelpPlistAdminRoutedComponent }

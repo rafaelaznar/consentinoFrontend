@@ -1,4 +1,4 @@
-import { Developer } from 'src/app/model/developer-interface';
+import { IDeveloper } from 'src/app/model/developer-interface';
 import { Pageable, Sort } from "./shared-interface";
 
 export interface HelpResponse {
@@ -18,6 +18,6 @@ export interface HelpResponse {
 export interface Help {
   id: number;
   resolution: any;
-  developer: Developer;
+  developer: IDeveloper;
   percentage: number;
 }

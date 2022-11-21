@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IDeveloper } from 'src/app/model/developer-interface';
 import { DeveloperService } from 'src/app/service/developer.service';
-import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faUserPen, faTrash, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { IPage } from 'src/app/model/generic-types-interface';
 
 @Component({
@@ -14,10 +14,19 @@ import { IPage } from 'src/app/model/generic-types-interface';
 export class DeveloperPlistAdminRoutedComponent implements OnInit {
 
   responseFromServer: IPage<IDeveloper>;
-
+  //
+  strTermFilter: string = "";
+  id_usertypeFilter: number = 0;
+  numberOfElements: number = 5;
+  page: number = 0;
+  sortField: string = "";
+  sortDirection: string = "";
+  //
   faEye = faEye;
   faUserPen = faUserPen;
   faTrash = faTrash;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
 
   constructor(
     private oDeveloperService: DeveloperService
@@ -27,11 +36,12 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
     this.getPage();
   }
 
-  getPage(numberPage = 0, pageRegister = 5, termino = "", id_usertype = 0) {
-    this.oDeveloperService.getDevelopersPlist(numberPage, pageRegister, termino, id_usertype)
+  getPage() {
+    this.oDeveloperService.getDevelopersPlist(this.page, this.numberOfElements, this.strTermFilter, this.id_usertypeFilter, this.sortField, this.sortDirection)
       .subscribe({
         next: (resp: IPage<IDeveloper>) => {
           this.responseFromServer = resp;
+          
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
@@ -40,19 +50,33 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
   }
 
   setPage(e: number) {
-    this.getPage(e - 1);
+    this.page = (e - 1);
+    this.getPage();
   }
 
   setRpp(rpp: number) {
-    this.getPage(this.responseFromServer.number, rpp);
+    this.numberOfElements = rpp;
+    this.getPage();
   }
 
-  setFilter(termino: string): void {
-    this.getPage(0, 5, termino);
+  setFilter(term: string): void {
+    this.strTermFilter = term;
+    this.getPage();
   }
 
   setFilterByUsertype(id: number): void {
-    this.getPage(0, this.responseFromServer.numberOfElements, "", id);
+    this.id_usertypeFilter = id;
+    this.getPage();
+  }
+
+  setOrder(order: string): void {
+    this.sortField = order;
+    if (this.sortDirection == "asc") {
+      this.sortDirection = "desc";
+    } else {
+      this.sortDirection = "asc";
+    }
+    this.getPage();
   }
 
 }
