@@ -68,7 +68,7 @@
                 <button class="btn btn-sm btn-warning">
                   <fa-icon [icon]="faUserPen"></fa-icon>
                 </button>
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger" [routerLink]="['/admin','developer','remove',developer.id]">
                   <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
               </div>
