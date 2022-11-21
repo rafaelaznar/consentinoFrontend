@@ -4,12 +4,15 @@
       <h1 class="text-center mb-5">Lista de Developers</h1>
       <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
         <app-search-unrouted [placeHolder]="'Buscar developer'" (onSearch)="setFilter( $event )"></app-search-unrouted>
-        <app-dropdown-register-page class="mx-2" [PageSize]="this.getPageRegister()" (eeRpp)="this.setRpp($event)">
+        <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.numberOfElements" (eeRpp)="this.setRpp($event)">
         </app-dropdown-register-page>
       </div>
-      <div class="col-md text-center">
-        <app-pagination-unrouted [nPage]="getPageNumber() + 1" [nTotalPages]="this.getpagesCount()"
+      <div class="col-md">
+        <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
           (eePage)="setPage($event)"></app-pagination-unrouted>
+      </div>
+      <div class="col-md text-end">
+        <h5>Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
       </div>
       <table class="table table-bordered table-striped">
         <thead>
@@ -30,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let developer of this.getPlistContent()">
+          <tr *ngFor="let developer of responseFromServer.content">
             <td>{{developer.id}}</td>
             <td>{{developer.name}}</td>
             <td>{{developer.surname}}</td>
@@ -42,7 +45,7 @@
             <td>{{developer.resolutions}}</td>
             <td>{{developer.helps}}</td>
             <td>{{developer.team.name}}</td>
-            <td (click)="filterByUsertype(developer.usertype.id)">{{developer.usertype.id}}-{{developer.usertype.name}}</td>
+            <td (click)="setFilterByUsertype(developer.usertype.id)">{{developer.usertype.id}}-{{developer.usertype.name}}</td>
             <td>
               <div class="btn-group" role="group" aria-label="Herramientas">
                 <button class="btn btn-sm btn-primary">

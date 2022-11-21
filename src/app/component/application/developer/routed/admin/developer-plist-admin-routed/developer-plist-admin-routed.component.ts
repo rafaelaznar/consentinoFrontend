@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Developer, DeveloperResponse } from 'src/app/model/developer-interface';
+import { IDeveloper } from 'src/app/model/developer-interface';
 import { DeveloperService } from 'src/app/service/developer.service';
 import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { IPage } from 'src/app/model/generic-types-interface';
 
 @Component({
   selector: 'app-developer-plist-admin-routed',
@@ -12,13 +13,8 @@ import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export class DeveloperPlistAdminRoutedComponent implements OnInit {
 
-  private pListContent!: Developer[];
-  private pagesCount!: number;
-  private numberPage: number = 0;
-  private pageRegister: number = 5;
-  private termino: string = "";
-  id_usertype: number = 0;
-  
+  responseFromServer: IPage<IDeveloper>;
+
   faEye = faEye;
   faUserPen = faUserPen;
   faTrash = faTrash;
@@ -31,15 +27,11 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
     this.getPage();
   }
 
-  getPage() {
-    this.oDeveloperService.getDevelopersPlist(this.numberPage, this.pageRegister, this.termino,this.id_usertype)
+  getPage(numberPage = 0, pageRegister = 5, termino = "", id_usertype = 0) {
+    this.oDeveloperService.getDevelopersPlist(numberPage, pageRegister, termino, id_usertype)
       .subscribe({
-        next: (resp: DeveloperResponse) => {
-          this.pListContent = resp.content;
-          console.log(this.pListContent);
-          this.pagesCount = resp.totalPages;
-          this.numberPage = resp.number;
-          console.log("pagina", this.numberPage);
+        next: (resp: IPage<IDeveloper>) => {
+          this.responseFromServer = resp;
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
@@ -47,43 +39,20 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
       })
   }
 
-  getPageNumber(): number {
-    return this.numberPage;
-  }
-
-  getPlistContent(): Developer[] {
-    return this.pListContent;
-  }
-
-  getpagesCount(): number {
-    return this.pagesCount;
-  }
-
   setPage(e: number) {
-    this.numberPage = e - 1;
-    this.getPage();
+    this.getPage(e - 1);
   }
 
-  getPageRegister(): number {
-    return this.pageRegister;
-  }
-
-  setRpp(registerPage: number) {
-    this.pageRegister = registerPage;
-    this.getPage();
+  setRpp(rpp: number) {
+    this.getPage(this.responseFromServer.number, rpp);
   }
 
   setFilter(termino: string): void {
-    this.termino = termino;
-    this.numberPage = 0;
-    this.getPage();
+    this.getPage(0, 5, termino);
   }
 
-  filterByUsertype(id: number): void {
-    this.id_usertype = id;
-    this.numberPage = 0;
-    this.getPage();
+  setFilterByUsertype(id: number): void {
+    this.getPage(0, this.responseFromServer.numberOfElements, "", id);
   }
-
 
 }
