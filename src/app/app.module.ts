@@ -20,6 +20,7 @@ import { PaginationUnroutedComponent } from './component/shared/unrouted/paginat
 import { PaginationService } from './service/pagination.service';
 import { TeamPlistAdminRoutedComponent } from './component/application/team/routed/admin/team-plist-admin-routed/team-plist-admin-routed.component';
 import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
+import { TaskPlistAdminRoutedComponent } from './component/application/task/routed/admin/task-plist-admin-routed/task-plist-admin-routed.component';
 import { DeveloperRemoveAdminRoutedComponent } from './component/application/developer/routed/admin/developer-remove-admin-routed/developer-remove-admin-routed.component';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { DeveloperRemoveAdminRoutedComponent } from './component/application/dev
     DropdownRegisterPageComponent,
     PaginationUnroutedComponent,
     TeamPlistAdminRoutedComponent,
-    HelpPlistAdminRoutedComponent
+    HelpPlistAdminRoutedComponent,
+    TaskPlistAdminRoutedComponent
   ],
   imports: [
     BrowserModule,
