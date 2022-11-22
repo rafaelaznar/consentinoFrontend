@@ -1,3 +1,4 @@
+import { IDeveloper2Send } from './../model/developer-interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -41,6 +42,10 @@ export class DeveloperService {
 
   removeOne(id: number): Observable<number> {
     return this.oHttp.delete<number>(this.url + '/' + id);
+  }
+
+  updateOne(oDeveloper: IDeveloper2Send): Observable<number> {
+    return this.oHttp.put<number>(this.url, oDeveloper);
   }
 
 }

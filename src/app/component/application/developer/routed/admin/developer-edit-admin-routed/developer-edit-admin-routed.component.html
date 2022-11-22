@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center mb-5">Edición de Developer</h1>
+
+
+
+      <form novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3 row">
+          <label for="inputID" class="col-sm-2 col-form-label">ID</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="inputID" formControlName="id" readonly>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-4 has-validation">
+            <input type="text" class="form-control"
+              [ngClass]="{'is-valid' : oForm.controls.name.dirty && !oForm.controls.name.errors?.['required'] &&
+            oForm.controls.name.dirty && !oForm.controls.name.errors?.['minlength'] 
+              && oForm.controls.name.dirty && !oForm.controls.name.errors?.['maxlength'],
+              'is-invalid' :  oForm.controls.name.dirty &&  oForm.controls.name.errors?.['minlength'] 
+              ||  oForm.controls.name.dirty &&  oForm.controls.name.errors?.['maxlength'] ||  
+              oForm.controls.name.dirty &&  oForm.controls.name.errors?.['required']}"
+              id="inputName" formControlName="name">
+            <div id="inputNameFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.name.dirty &&  oForm.controls.name.errors?.['minlength']">
+              La longitud mínima es de 5 caracteres.
+            </div>
+            <div id="inputNameFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.name.dirty &&  oForm.controls.name.errors?.['maxlength']">
+              La longitud máxima es de 10 caracteres.
+            </div>
+            <div id="inputNameFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.name.dirty &&  oForm.controls.name.errors?.['required']">
+              El campo es obligatorio.
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputSurname" class="col-sm-2 col-form-label">Surname</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputSurname" formControlName="surname">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary"
+          [disabled]="!oForm.dirty || (oForm.invalid && oForm.dirty)">Guardar</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>

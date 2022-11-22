@@ -9,6 +9,7 @@ import { DeveloperService } from 'src/app/service/developer.service';
   templateUrl: './developer-remove-admin-routed.component.html',
   styleUrls: ['./developer-remove-admin-routed.component.css']
 })
+
 export class DeveloperRemoveAdminRoutedComponent implements OnInit {
 
   id: number = 0;
