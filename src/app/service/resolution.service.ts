@@ -10,19 +10,12 @@ import { environment } from 'src/environments/environment';
 })
 export class ResolutionService {
 
-  constructor(
-    private oHttpClient: HttpClient
-  ) { }
+    private entityURL = '/resolution';
+    url: string = ""
 
-  private entityURL = '/resolution';
-
-  getOne(id: number): Observable<Resolution> {
-    return this.oHttpClient.get<Resolution>("http://localhost:8082/resolution/2");
-  }
-
-  /* getPage(): Observable<IResolution> {
-    return this.oHttpClient.get<IResolution>("http://localhost:8082/resolution?page=0&size=5");
-  } */
+    constructor(private oHttp: HttpClient) {
+      this.url = `${environment.baseURL}${this.entityURL}`;
+    }
 
   getPage(page: number, size: number, filter: string): Observable<ResolutionResponse> {
     let params = new HttpParams()
@@ -30,6 +23,18 @@ export class ResolutionService {
       .set("page", page)
       .set("size", size);
     let url: string = `${environment.baseURL}${this.entityURL}`;
-    return this.oHttpClient.get<ResolutionResponse>(url, { params: params });
+    return this.oHttp.get<ResolutionResponse>(url, { params: params });
   }
+
+  getOne(id: number): Observable<Resolution> {
+    return this.oHttp.get<Resolution>(this.url + "/" + id);
+  }
+
+  removeOne(id: number): Observable<number> {
+    return this.oHttp.delete<number>(this.url + '/' + id);
+  }
+
+  /* updateOne(oDeveloper: IDeveloper2Send): Observable<number> {
+    return this.oHttp.put<number>(this.url, oDeveloper);
+  } */
 }
