@@ -25,6 +25,8 @@ import { DeveloperRemoveAdminRoutedComponent } from './component/application/dev
 import { DeveloperEditAdminRoutedComponent } from './component/application/developer/routed/admin/developer-edit-admin-routed/developer-edit-admin-routed.component';
 import { ResolutionPlistAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-plist-admin-routed/resolution-plist-admin-routed.component';
 import { DeveloperNewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-new-admin-routed/developer-new-admin-routed.component';
+import { ResolutionViewAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-view-admin-routed/resolution-view-admin-routed.component';
+import { ResolutionRemoveAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-remove-admin-routed/resolution-remove-admin-routed.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { DeveloperNewAdminRoutedComponent } from './component/application/develo
     PaginationUnroutedComponent,
     TeamPlistAdminRoutedComponent,
     HelpPlistAdminRoutedComponent,
-    ResolutionPlistAdminRoutedComponent
+    ResolutionPlistAdminRoutedComponent,
+    ResolutionViewAdminRoutedComponent,
+    ResolutionRemoveAdminRoutedComponent,
     TaskPlistAdminRoutedComponent
   ],
   imports: [

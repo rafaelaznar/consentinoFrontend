@@ -2,6 +2,17 @@ import { IDeveloper } from "./developer-interface";
 import { Pageable, Sort } from "./shared-interface";
 import { Team } from "./team-interface";
 
+export interface Resolution {
+    id: number;
+    issue: Issue;
+    observations: string;
+    integration_turn: number;
+    integration_datetime: Date;
+    pullrequest_url: string;
+    developer: IDeveloper;
+    value: number;
+}
+
 export interface ResolutionResponse {
     content: Resolution[];
     pageable: Pageable;
@@ -16,17 +27,6 @@ export interface ResolutionResponse {
     empty: boolean;
 }
 
-export interface Resolution {
-    id: number;
-    issue: Issue;
-    observations: string;
-    integration_turn: number;
-    integration_datetime: Date;
-    pullrequest_url: string;
-    developer: IDeveloper;
-    value: number;
-}
-
 export interface Project {
     id: number;
     project_code: string;
@@ -35,7 +35,6 @@ export interface Project {
     tasks: number;
     team: Team;
 }
-
 export interface Task {
     id: number;
     description: string;
