@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">Resolutions</h1>
+            <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
+                <app-search-unrouted [placeHolder]="'Buscar resolution'" (onSearch)="setFilter( $event )">
+                </app-search-unrouted>
+                <app-dropdown-register-page class="mx-2" [PageSize]="this.getPageRegister()"
+                    (eeRpp)="this.setRpp($event)">
+                </app-dropdown-register-page>
+            </div>
+            <div class="col-md text-center">
+                <app-pagination-unrouted [nPage]="getPageNumber() + 1" [nTotalPages]="this.getpagesCount()"
+                    (eePage)="setPage($event)"></app-pagination-unrouted>
+            </div>
+
+            <table class="table table-bordered table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ID Issue</th>
+                        <th>Observations</th>
+                        <th>Integrations turn</th>
+                        <th>Integrations datetime</th>
+                        <th>Pullrequest URL</th>
+                        <th>ID Developer</th>
+                        <th>Value</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let resolution of this.getPageContent()">
+                        <td>{{resolution.id}}</td>
+                        <td>{{resolution.issue.id}}</td>
+                        <td>{{resolution.observations}}</td>
+                        <td>{{resolution.integration_turn}}</td>
+                        <td>{{resolution.integration_datetime}}</td>
+                        <td>{{resolution.pullrequest_url}}</td>
+                        <td>{{resolution.developer.id}}</td>
+                        <td>{{resolution.value}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Herramientas">
+                                <button class="btn btn-sm btn-primary">
+                                    <fa-icon [icon]="faEye"></fa-icon>
+                                </button>
+                                <button class="btn btn-sm btn-warning">
+                                    <fa-icon [icon]="faUserPen"></fa-icon>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <fa-icon [icon]="faTrash"></fa-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

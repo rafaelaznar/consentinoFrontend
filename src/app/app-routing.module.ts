@@ -10,6 +10,7 @@ import { HelpPlistAdminRoutedComponent } from './component/application/help/rout
 import { DeveloperViewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-view-admin-routed/developer-view-admin-routed.component';
 import { DeveloperRemoveAdminRoutedComponent } from './component/application/developer/routed/admin/developer-remove-admin-routed/developer-remove-admin-routed.component';
 import { DeveloperEditAdminRoutedComponent } from './component/application/developer/routed/admin/developer-edit-admin-routed/developer-edit-admin-routed.component';
+import { ResolutionPlistAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-plist-admin-routed/resolution-plist-admin-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'admin/developer/edit/:id', component: DeveloperEditAdminRoutedComponent},
   { path: 'admin/usertype/plist', component: UsertypePlistAdminRoutedComponent },
   { path: 'admin/team/plist', component: TeamPlistAdminRoutedComponent },
-  { path: 'admin/help/plist', component: HelpPlistAdminRoutedComponent }
+  { path: 'admin/help/plist', component: HelpPlistAdminRoutedComponent },
+  { path: 'admin/resolution/plist', component: ResolutionPlistAdminRoutedComponent }
 ];
 
 @NgModule({

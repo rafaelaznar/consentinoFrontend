@@ -22,6 +22,7 @@ import { TeamPlistAdminRoutedComponent } from './component/application/team/rout
 import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
 import { DeveloperRemoveAdminRoutedComponent } from './component/application/developer/routed/admin/developer-remove-admin-routed/developer-remove-admin-routed.component';
 import { DeveloperEditAdminRoutedComponent } from './component/application/developer/routed/admin/developer-edit-admin-routed/developer-edit-admin-routed.component';
+import { ResolutionPlistAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-plist-admin-routed/resolution-plist-admin-routed.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DeveloperEditAdminRoutedComponent } from './component/application/devel
     DropdownRegisterPageComponent,
     PaginationUnroutedComponent,
     TeamPlistAdminRoutedComponent,
-    HelpPlistAdminRoutedComponent    
+    HelpPlistAdminRoutedComponent,
+    ResolutionPlistAdminRoutedComponent
   ],
   imports: [
     BrowserModule,
