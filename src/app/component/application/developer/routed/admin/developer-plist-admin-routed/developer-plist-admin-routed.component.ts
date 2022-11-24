@@ -41,7 +41,9 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
       .subscribe({
         next: (resp: IPage<IDeveloper>) => {
           this.responseFromServer = resp;
-          
+          if (this.page > resp.totalPages - 1) {
+            this.page = resp.totalPages - 1;
+          }
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
