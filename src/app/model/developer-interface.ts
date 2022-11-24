@@ -22,7 +22,7 @@ export interface IDeveloper {
     usertype:    Usertype;
 }
 
-export interface IDeveloper2Send {
+export interface IDeveloper2Form {
     id:          FormControl<number>;
     name:        FormControl<string>;
     surname:     FormControl<string>;
@@ -31,4 +31,14 @@ export interface IDeveloper2Send {
     username:    FormControl<string>;
     team:        FormControl<IEntity>;
     usertype:    FormControl<IEntity>;
+}
+export interface IDeveloper2Send {
+    id:          number;
+    name:        string;
+    surname:     string;
+    lastname:    string;
+    email:       string;
+    username:    string;
+    team:        IEntity;
+    usertype:    IEntity;
 }

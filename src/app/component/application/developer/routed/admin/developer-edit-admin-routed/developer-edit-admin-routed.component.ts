@@ -1,4 +1,4 @@
-import { IDeveloper2Send } from './../../../../../../model/developer-interface';
+import { IDeveloper2Form, IDeveloper2Send } from './../../../../../../model/developer-interface';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,8 +14,8 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
 
   id: number = 0;
   oDeveloper: IDeveloper = null;
-  oDeveloper2Send: IDeveloper2Send = null;
-  oForm: FormGroup<IDeveloper2Send>;
+  oDeveloper2Form: IDeveloper2Form = null;
+  oForm: FormGroup<IDeveloper2Form>;
 
   constructor(
     private oRouter: Router,
@@ -38,7 +38,10 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
         this.oForm = <FormGroup>this.oFormBuilder.group({
           id: [data.id, [Validators.required]],
           name: [data.name, [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
-          surname: [data.surname, [Validators.required, Validators.minLength(3)]]
+          surname: [data.surname, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          lastname: [data.lastname, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          email: [data.email,[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+          username: [data.username, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
         });
       }
     })
@@ -46,12 +49,12 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
 
   onSubmit() {
     console.log("onSubmit");
-    this.oDeveloper2Send = {
+    this.oDeveloper2Form = {
       id: new FormControl(this.oForm.value.id),
       name: new FormControl(this.oForm.value.name),
       surname: new FormControl(this.oForm.value.surname),
       lastname: new FormControl(this.oDeveloper.lastname),
-      email: new FormControl(this.oDeveloper.email),
+      email: new FormControl(this.oForm.value.email),
       username: new FormControl(this.oDeveloper.username),
       team: new FormControl({
         id: this.oDeveloper.team.id
@@ -61,7 +64,7 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
       })
     }
     if (this.oForm.valid) {
-      this.oDeveloperService.updateOne(this.oDeveloper2Send).subscribe({
+      this.oDeveloperService.updateOne(this.oDeveloper2Form).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
           alert("Developer " + this.id + " updated");
@@ -69,7 +72,6 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
         }
       })
     }
-
   }
 
 
