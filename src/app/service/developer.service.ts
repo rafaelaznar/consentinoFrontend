@@ -1,4 +1,4 @@
-import { IDeveloper2Send } from './../model/developer-interface';
+import { IDeveloper2Form, IDeveloper2Send } from './../model/developer-interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import { IPage } from '../model/generic-types-interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DeveloperService {
 
   private entityURL = '/developer';
@@ -44,8 +45,32 @@ export class DeveloperService {
     return this.oHttp.delete<number>(this.url + '/' + id);
   }
 
-  updateOne(oDeveloper: IDeveloper2Send): Observable<number> {
-    return this.oHttp.put<number>(this.url, oDeveloper);
+  updateOne(oDeveloper2Form: IDeveloper2Form): Observable<number> {
+    let oDeveloper2Send: IDeveloper2Send = {
+      id: oDeveloper2Form.id.value,
+      name: oDeveloper2Form.name.value,
+      surname: oDeveloper2Form.surname.value,
+      lastname: oDeveloper2Form.lastname.value,
+      username: oDeveloper2Form.username.value,
+      email: oDeveloper2Form.email.value,
+      team: oDeveloper2Form.team.value,
+      usertype: oDeveloper2Form.usertype.value
+    }
+    return this.oHttp.put<number>(this.url, oDeveloper2Send);
+  }
+
+  newOne(oDeveloper2Form: IDeveloper2Form): Observable<number> {    
+    let oDeveloper2Send: IDeveloper2Send = {
+      id: 0,
+      name: oDeveloper2Form.name.value,
+      surname: oDeveloper2Form.surname.value,
+      lastname: oDeveloper2Form.lastname.value,
+      username: oDeveloper2Form.username.value,
+      email: oDeveloper2Form.email.value,
+      team: oDeveloper2Form.team.value,
+      usertype: oDeveloper2Form.usertype.value
+    }
+    return this.oHttp.post<number>(this.url, oDeveloper2Send);
   }
 
 }

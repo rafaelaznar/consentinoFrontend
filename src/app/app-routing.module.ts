@@ -7,10 +7,12 @@ import { DeveloperPlistAdminRoutedComponent } from './component/application/deve
 import { UsertypePlistAdminRoutedComponent } from './component/application/usertype/routed/admin/usertype-plist-admin-routed/usertype-plist-admin-routed.component';
 import { TeamPlistAdminRoutedComponent } from './component/application/team/routed/admin/team-plist-admin-routed/team-plist-admin-routed.component';
 import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
+import { TaskPlistAdminRoutedComponent } from './component/application/task/routed/admin/task-plist-admin-routed/task-plist-admin-routed.component'
 import { DeveloperViewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-view-admin-routed/developer-view-admin-routed.component';
 import { DeveloperRemoveAdminRoutedComponent } from './component/application/developer/routed/admin/developer-remove-admin-routed/developer-remove-admin-routed.component';
 import { DeveloperEditAdminRoutedComponent } from './component/application/developer/routed/admin/developer-edit-admin-routed/developer-edit-admin-routed.component';
 import { ResolutionPlistAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-plist-admin-routed/resolution-plist-admin-routed.component';
+import { DeveloperNewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-new-admin-routed/developer-new-admin-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,11 +22,13 @@ const routes: Routes = [
   { path: 'admin/developer/plist', component: DeveloperPlistAdminRoutedComponent },
   { path: 'admin/developer/view/:id', component: DeveloperViewAdminRoutedComponent },
   { path: 'admin/developer/remove/:id', component: DeveloperRemoveAdminRoutedComponent},
+  { path: 'admin/developer/new', component: DeveloperNewAdminRoutedComponent},
   { path: 'admin/developer/edit/:id', component: DeveloperEditAdminRoutedComponent},
   { path: 'admin/usertype/plist', component: UsertypePlistAdminRoutedComponent },
   { path: 'admin/team/plist', component: TeamPlistAdminRoutedComponent },
   { path: 'admin/help/plist', component: HelpPlistAdminRoutedComponent },
   { path: 'admin/resolution/plist', component: ResolutionPlistAdminRoutedComponent }
+  { path: 'admin/task/plist', component: TaskPlistAdminRoutedComponent },
 ];
 
 @NgModule({
