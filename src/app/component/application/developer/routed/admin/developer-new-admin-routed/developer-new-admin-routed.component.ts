@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDeveloper } from 'src/app/model/developer-interface';
 import { DeveloperService } from 'src/app/service/developer.service';
+declare let bootstrap: any;
 
 @Component({
   selector: 'app-developer-new-admin-routed',
@@ -16,23 +17,28 @@ export class DeveloperNewAdminRoutedComponent implements OnInit {
   oDeveloper: IDeveloper = null;
   oDeveloper2Form: IDeveloper2Form = null;
   oForm: FormGroup<IDeveloper2Form>;
+  // modal
+  mimodal: string = "miModal";
+  myModal: any;
+  modalTitle: string = "";
+  modalContent: string = "";
 
   constructor(
     private oRouter: Router,
     private oDeveloperService: DeveloperService,
     private oFormBuilder: FormBuilder
-  ) {    
+  ) {
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
       name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
       surname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      email: ['',[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
-    });  
+    });
   }
 
   onSubmit() {
@@ -55,13 +61,26 @@ export class DeveloperNewAdminRoutedComponent implements OnInit {
       this.oDeveloperService.newOne(this.oDeveloper2Form).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
-          alert("Developer " + data + " created");
-          this.oRouter.navigate(['/admin/developer/view', data])
+          this.modalTitle = "ANDAMIO";
+          this.modalContent = "Developer " + data + " created";
+          this.showModal(data);
         }
       })
     }
 
   }
 
+
+
+  showModal = (data) => {
+    this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    var myModalEl = document.getElementById(this.mimodal);
+    myModalEl.addEventListener('hidden.bs.modal', (event): void => {
+      this.oRouter.navigate(['/admin/developer/view', data])
+    })
+    this.myModal.show()
+  }
 
 }
