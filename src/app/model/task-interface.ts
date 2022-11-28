@@ -1,16 +1,17 @@
+import { IProject } from "./project-interface";
 import { Pageable, Sort } from "./shared-interface";
 
 
-export interface Task {
+export interface ITask {
     id:            number;
     description:   string;
-    id_project:    number;
+    project:    IProject;
     priority:       number;
     complexity:    number;
 }
 
-export interface TaskResponse {
-    content:          Task[];
+export interface ITaskResponse {
+    content:          ITask[];
     pageable:         Pageable;
     last:             boolean;
     totalPages:       number;

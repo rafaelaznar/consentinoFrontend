@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Task, TaskResponse } from 'src/app/model/task-interface';
+import { ITask, ITaskResponse } from 'src/app/model/task-interface';
 import { TaskService } from 'src/app/service/task.service';
 import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,7 +11,7 @@ import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 })
 export class TaskPlistAdminRoutedComponent implements OnInit {
 
-  private pListContent!: Task[];
+  private pListContent!: ITask[];
   private pagesCount!: number;
   private numberPage: number = 0;
   private pageRegister: number = 5;
@@ -32,7 +32,7 @@ export class TaskPlistAdminRoutedComponent implements OnInit {
   getPage() {
     this.oTaskService.getTasksPlist(this.numberPage, this.pageRegister, this.termino)
       .subscribe({
-        next: (resp: TaskResponse) => {
+        next: (resp: ITaskResponse) => {
           this.pListContent = resp.content;
           console.log(this.pListContent);
           this.pagesCount = resp.totalPages;
@@ -49,7 +49,7 @@ export class TaskPlistAdminRoutedComponent implements OnInit {
     return this.numberPage;
   }
 
-  getPlistContent(): Task[] {
+  getPlistContent(): ITask[] {
     return this.pListContent;
   }
 
