@@ -12,8 +12,7 @@ import { DeveloperService } from 'src/app/service/developer.service';
 
 export class DeveloperRemoveAdminRoutedComponent implements OnInit {
 
-  id: number = 0;
-  oDeveloper: IDeveloper = null;
+  id: number = 0;  
   msg: string = "";
 
   constructor(
@@ -24,17 +23,7 @@ export class DeveloperRemoveAdminRoutedComponent implements OnInit {
     this.id = oActivatedRoute.snapshot.params['id'];
   }
 
-  ngOnInit(): void {
-    this.getOne();
-  }
-
-  getOne() {
-    this.oDeveloperService.getOne(this.id).subscribe({
-      next: (data: IDeveloper) => {
-        this.oDeveloper = data;
-        console.log(data);
-      }
-    })
+  ngOnInit(): void {    
   }
 
   removeOne() {

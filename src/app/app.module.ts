@@ -32,6 +32,7 @@ import { ProjectViewAdminRoutedComponent } from './component/application/project
 import { TaskViewAdminRoutedComponent } from './component/application/task/routed/admin/task-view-admin-routed/task-view-admin-routed.component';
 import { TaskRemoveAdminRoutedComponent } from './component/application/task/routed/admin/task-remove-admin-routed/task-remove-admin-routed.component';
 import { LogoutComponent } from './component/shared/routed/logout/logout.component';
+import { DeveloperDetailAdminUnroutedComponent } from './component/application/developer/unrouted/admin/developer-detail-admin-unrouted/developer-detail-admin-unrouted.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { LogoutComponent } from './component/shared/routed/logout/logout.compone
     DeveloperRemoveAdminRoutedComponent,
     DeveloperEditAdminRoutedComponent,
     DeveloperNewAdminRoutedComponent,
+    DeveloperDetailAdminUnroutedComponent,
     UsertypePlistAdminRoutedComponent,
     PaginationComponent,
     SearchUnroutedComponent,

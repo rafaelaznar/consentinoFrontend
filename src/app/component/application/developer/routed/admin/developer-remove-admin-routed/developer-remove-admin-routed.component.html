@@ -1,59 +1,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
-            <h1 class="text-center mb-5">Borrado de un Developer</h1>
-            <table class="table table-bordered table-striped">
-                <tbody>
-                    <tr>
-                        <th>Id</th>
-                        <td>{{oDeveloper.id}}</td>
-                    </tr>
-                    <tr>
-                        <td>Name</td>
-                        <td>{{oDeveloper.name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Surname</td>
-                        <td>{{oDeveloper.surname}}</td>
-                    </tr>
-                    <tr>
-                        <td>Lastname</td>
-                        <td>{{oDeveloper.lastname}}</td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>{{oDeveloper.email}}</td>
-                    </tr>
-                    <tr>
-                        <td>Username</td>
-                        <td>{{oDeveloper.username}}</td>
-                    </tr>
-                    <tr>
-                        <td>Issues</td>
-                        <td>{{oDeveloper.issues}}</td>
-                    </tr>
-                    <tr>
-                        <td>Teams</td>
-                        <td>{{oDeveloper.teams}}</td>
-                    </tr>
-                    <tr>
-                        <td>Resolutions</td>
-                        <td>{{oDeveloper.resolutions}}</td>
-                    </tr>
-                    <tr>
-                        <td>Helps</td>
-                        <td>{{oDeveloper.helps}}</td>
-                    </tr>
-                    <tr>
-                        <td>Team</td>
-                        <td>{{oDeveloper.team.name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Usertype</td>
-                        <td>{{oDeveloper.usertype.id}}-{{oDeveloper.usertype.name}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h1 class="text-center mb-5">Borrado del Developer con id={{id}}</h1>
+            <app-developer-detail-admin-unrouted [id]="id"></app-developer-detail-admin-unrouted>
             <div class="d-grid gap-2 d-md-block mt-3 d-md-flex justify-content-md-center">
                 <div class="col-md-5 control-group text-center">
                     <div class="alert alert-danger my-3" role="alert">
@@ -73,17 +22,17 @@
 <!-- modal de bootstrap-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Andamio</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Andamio</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{msg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="modal-body">
-          {{msg}}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>        
-        </div>
-      </div>
     </div>
-  </div>
+</div>

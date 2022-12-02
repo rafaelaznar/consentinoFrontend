@@ -14,23 +14,14 @@ export class DeveloperViewAdminRoutedComponent implements OnInit {
   oDeveloper: IDeveloper = null;
 
   constructor(
-    private oActivatedRoute: ActivatedRoute,
-    private oDeveloperService: DeveloperService,
+    private oActivatedRoute: ActivatedRoute
   ) {
     this.id = oActivatedRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    this.getOne();
+    
   }
 
-  getOne() {
-    this.oDeveloperService.getOne(this.id).subscribe({
-      next: (data: IDeveloper) => {
-        this.oDeveloper = data;
-        console.log(data);
-      }
-    })
-  }
 
 }
