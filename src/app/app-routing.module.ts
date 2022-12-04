@@ -15,6 +15,7 @@ import { DeveloperNewAdminRoutedComponent } from './component/application/develo
 import { ResolutionPlistAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-plist-admin-routed/resolution-plist-admin-routed.component';
 import { ResolutionRemoveAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-remove-admin-routed/resolution-remove-admin-routed.component';
 import { ResolutionViewAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-view-admin-routed/resolution-view-admin-routed.component';
+import { ProyectPlistAdminRoutedComponent } from './component/application/proyect/routed/admin/proyect-plist-admin-routed/proyect-plist-admin-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'admin/resolution/view/:id', component: ResolutionViewAdminRoutedComponent },
   { path: 'admin/resolution/remove/:id', component: ResolutionRemoveAdminRoutedComponent},
   { path: 'admin/task/plist', component: TaskPlistAdminRoutedComponent },
+  { path: 'admin/proyect/plist', component: ProyectPlistAdminRoutedComponent}
 ];
 
 @NgModule({

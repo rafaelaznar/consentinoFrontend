@@ -27,6 +27,7 @@ import { ResolutionPlistAdminRoutedComponent } from './component/application/res
 import { DeveloperNewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-new-admin-routed/developer-new-admin-routed.component';
 import { ResolutionViewAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-view-admin-routed/resolution-view-admin-routed.component';
 import { ResolutionRemoveAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-remove-admin-routed/resolution-remove-admin-routed.component';
+import { ProyectPlistAdminRoutedComponent } from './component/application/proyect/routed/admin/proyect-plist-admin-routed/proyect-plist-admin-routed.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ResolutionRemoveAdminRoutedComponent } from './component/application/re
     ResolutionPlistAdminRoutedComponent,
     ResolutionViewAdminRoutedComponent,
     ResolutionRemoveAdminRoutedComponent,
-    TaskPlistAdminRoutedComponent
+    TaskPlistAdminRoutedComponent,
+    ProyectPlistAdminRoutedComponent
   ],
   imports: [
     BrowserModule,
