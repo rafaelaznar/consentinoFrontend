@@ -26,17 +26,17 @@
           <tr *ngFor="let task of this.getPlistContent()">
             <td>{{task.id}}</td>
             <td>{{task.description}}</td>
-            <td>{{task.id_project}}</td>
+            <td>{{task.project.id}}</td>
             <td>{{task.priority}}</td>
             <td>{{task.complexity}}</td>
             <td>
-              <button class="btn btn-outline-primary">
+              <button class="btn btn-outline-primary" [routerLink]="['/admin/task/view',task.id]">
                 <fa-icon [icon]="faEye"></fa-icon>
               </button>
-              <button class="btn btn-outline-warning">
+              <button class="btn btn-outline-warning" [routerLink]="['/admin/task/edit',task.id]">
                 <fa-icon [icon]="faUserPen"></fa-icon>
               </button>
-              <button class="btn btn-outline-danger">
+              <button class="btn btn-outline-danger" [routerLink]="['/admin/task/remove',task.id]">
                 <fa-icon [icon]="faTrash"></fa-icon>
               </button>
             </td>

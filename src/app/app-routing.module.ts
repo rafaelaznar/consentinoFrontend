@@ -17,6 +17,9 @@ import { ResolutionRemoveAdminRoutedComponent } from './component/application/re
 import { ResolutionViewAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-view-admin-routed/resolution-view-admin-routed.component';
 import { ProjectPlistAdminRoutedComponent } from './component/application/project/routed/admin/project-plist-admin-routed/project-plist-admin-routed.component';
 import { ProjectViewAdminRoutedComponent } from './component/application/project/routed/admin/project-view-admin-routed/project-view-admin-routed.component';
+import { TaskViewAdminRoutedComponent } from './component/application/task/routed/admin/task-view-admin-routed/task-view-admin-routed.component';
+import { TaskRemoveAdminRoutedComponent } from './component/application/task/routed/admin/task-remove-admin-routed/task-remove-admin-routed.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,7 +39,10 @@ const routes: Routes = [
   { path: 'admin/resolution/remove/:id', component: ResolutionRemoveAdminRoutedComponent},
   { path: 'admin/task/plist', component: TaskPlistAdminRoutedComponent },
   { path: 'admin/project/plist', component: ProjectPlistAdminRoutedComponent },
-  { path: 'admin/project/view/:id', component: ProjectViewAdminRoutedComponent }
+  { path: 'admin/project/view/:id', component: ProjectViewAdminRoutedComponent },
+  { path: 'admin/task/view/:id', component: TaskViewAdminRoutedComponent },
+  { path: 'admin/task/remove/:id', component: TaskRemoveAdminRoutedComponent }
+
 ];
 
 @NgModule({
