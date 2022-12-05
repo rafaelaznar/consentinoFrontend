@@ -30,5 +30,3 @@ import { Team } from "./team-interface";
         empty: boolean;
     }
 
-
-

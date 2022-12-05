@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">Task View</h1>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{oTask.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{oTask.description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Project Id</td>
+                        <td>{{oTask.project.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Priority</td>
+                        <td>{{oTask.priority}}</td>
+                    </tr>
+                    <tr>
+                        <td>Complexity</td>
+                        <td>{{oTask.complexity}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div>
+                <button class="btn btn-primary" [routerLink]="['/admin/task/plist']">
+                    Back
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
