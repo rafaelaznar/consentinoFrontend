@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/model/user-interface';
 import { DecodeService } from 'src/app/service/decode.service';
-import { SessionService } from 'src/app/service/session.service';
+import { EmitEvent, Events, SessionService } from 'src/app/service/session.service';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (data: string) => {
           localStorage.setItem("token", data);
+          this.oSessionService.emit(new EmitEvent(Events.login, data));
           this.oRouter.navigate(['/home']);
         },
         error: (error: HttpErrorResponse) => {

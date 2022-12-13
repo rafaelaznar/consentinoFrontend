@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/service/session.service';
+import { EmitEvent, Events, SessionService } from 'src/app/service/session.service';
 
 @Component({
   selector: 'app-logout',
@@ -17,6 +17,7 @@ export class LogoutComponent implements OnInit {
 
   logout() {
     this.oSessionService.logout();
+    this.oSessionService.emit(new EmitEvent(Events.logout, ""));
   }
 
 }
