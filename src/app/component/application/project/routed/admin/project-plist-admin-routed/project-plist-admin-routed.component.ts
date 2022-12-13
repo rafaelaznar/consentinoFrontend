@@ -1,22 +1,21 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { getSafePropertyAccessString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { IDeveloper } from 'src/app/model/developer-interface';
-import { DeveloperService } from 'src/app/service/developer.service';
-import { faEye, faUserPen, faTrash, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp, faEye, faTrash, faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { IPage } from 'src/app/model/generic-types-interface';
+import { IProject } from 'src/app/model/project-interface';
+import { ProjectService } from 'src/app/service/project.service';
 
 @Component({
-  selector: 'app-developer-plist-admin-routed',
-  templateUrl: './developer-plist-admin-routed.component.html',
-  styleUrls: ['./developer-plist-admin-routed.component.css']
+  selector: 'app-project-plist-admin-routed',
+  templateUrl: './project-plist-admin-routed.component.html',
+  styleUrls: ['./project-plist-admin-routed.component.css']
 })
+export class ProjectPlistAdminRoutedComponent implements OnInit {
 
-export class DeveloperPlistAdminRoutedComponent implements OnInit {
+  responseFromServer: IPage<IProject>;
 
-  responseFromServer: IPage<IDeveloper>;
-  //
   strTermFilter: string = "";
-  id_usertypeFilter: number = 0;
   numberOfElements: number = 5;
   page: number = 0;
   sortField: string = "";
@@ -29,7 +28,7 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
   faArrowDown = faArrowDown;
 
   constructor(
-    private oDeveloperService: DeveloperService
+    private oProjectService: ProjectService
   ) { }
 
   ngOnInit() {
@@ -37,9 +36,9 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
   }
 
   getPage() {
-    this.oDeveloperService.getDevelopersPlist(this.page, this.numberOfElements, this.strTermFilter, this.id_usertypeFilter, this.sortField, this.sortDirection)
+    this.oProjectService.getProjectsPlist(this.page, this.numberOfElements, this.strTermFilter, this.sortField, this.sortDirection)
       .subscribe({
-        next: (resp: IPage<IDeveloper>) => {
+        next: (resp: IPage<IProject>) => {
           this.responseFromServer = resp;
           if (this.page > resp.totalPages - 1) {
             this.page = resp.totalPages - 1;
@@ -66,11 +65,6 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
     this.getPage();
   }
 
-  setFilterByUsertype(id: number): void {
-    this.id_usertypeFilter = id;
-    this.getPage();
-  }
-
   setOrder(order: string): void {
     this.sortField = order;
     if (this.sortDirection == "asc") {
@@ -80,5 +74,4 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
     }
     this.getPage();
   }
-
 }

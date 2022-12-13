@@ -1,19 +1,23 @@
 import { IDeveloper } from 'src/app/model/developer-interface';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { DeveloperService } from 'src/app/service/developer.service';
 
 @Component({
-  selector: 'app-developer-view-admin-routed',
-  templateUrl: './developer-view-admin-routed.component.html',
-  styleUrls: ['./developer-view-admin-routed.component.css']
+  selector: 'app-developer-delete-admin-routed',
+  templateUrl: './developer-remove-admin-routed.component.html',
+  styleUrls: ['./developer-remove-admin-routed.component.css']
 })
-export class DeveloperViewAdminRoutedComponent implements OnInit {
+
+export class DeveloperRemoveAdminRoutedComponent implements OnInit {
 
   id: number = 0;
   oDeveloper: IDeveloper = null;
+  msg: string = "";
 
   constructor(
+    protected oLocation: Location,
     private oActivatedRoute: ActivatedRoute,
     private oDeveloperService: DeveloperService,
   ) {
@@ -29,6 +33,17 @@ export class DeveloperViewAdminRoutedComponent implements OnInit {
       next: (data: IDeveloper) => {
         this.oDeveloper = data;
         console.log(data);
+      }
+    })
+  }
+
+  removeOne() {
+    this.oDeveloperService.removeOne(this.id).subscribe({
+      next: (data: number) => {
+        this.msg = "Developer " + this.id + " removed";        
+        //open bootstrap modal here
+        alert(this.msg);
+        this.oLocation.back();
       }
     })
   }

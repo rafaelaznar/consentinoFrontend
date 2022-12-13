@@ -20,7 +20,17 @@ import { TeamPlistAdminRoutedComponent } from './component/application/team/rout
 import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
 import { CryptoService } from './service/crypto.service';
 import { DecodeService } from './service/decode.service';
-
+import { TaskPlistAdminRoutedComponent } from './component/application/task/routed/admin/task-plist-admin-routed/task-plist-admin-routed.component';
+import { DeveloperRemoveAdminRoutedComponent } from './component/application/developer/routed/admin/developer-remove-admin-routed/developer-remove-admin-routed.component';
+import { DeveloperEditAdminRoutedComponent } from './component/application/developer/routed/admin/developer-edit-admin-routed/developer-edit-admin-routed.component';
+import { ResolutionPlistAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-plist-admin-routed/resolution-plist-admin-routed.component';
+import { DeveloperNewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-new-admin-routed/developer-new-admin-routed.component';
+import { ResolutionViewAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-view-admin-routed/resolution-view-admin-routed.component';
+import { ResolutionRemoveAdminRoutedComponent } from './component/application/resolution/routed/admin/resolution-remove-admin-routed/resolution-remove-admin-routed.component';
+import { ProjectPlistAdminRoutedComponent } from './component/application/project/routed/admin/project-plist-admin-routed/project-plist-admin-routed.component';
+import { ProjectViewAdminRoutedComponent } from './component/application/project/routed/admin/project-view-admin-routed/project-view-admin-routed.component';
+import { TaskViewAdminRoutedComponent } from './component/application/task/routed/admin/task-view-admin-routed/task-view-admin-routed.component';
+import { TaskRemoveAdminRoutedComponent } from './component/application/task/routed/admin/task-remove-admin-routed/task-remove-admin-routed.component';
 
 
 @NgModule({
@@ -31,13 +41,24 @@ import { DecodeService } from './service/decode.service';
     MenuComponent,    
     DeveloperPlistAdminRoutedComponent,
     DeveloperViewAdminRoutedComponent,
+    DeveloperRemoveAdminRoutedComponent,
+    DeveloperEditAdminRoutedComponent,
+    DeveloperNewAdminRoutedComponent,
     UsertypePlistAdminRoutedComponent,
     PaginationComponent,
     SearchUnroutedComponent,
     DropdownRegisterPageComponent,
     PaginationUnroutedComponent,
     TeamPlistAdminRoutedComponent,
-    HelpPlistAdminRoutedComponent
+    HelpPlistAdminRoutedComponent,
+    ResolutionPlistAdminRoutedComponent,
+    ResolutionViewAdminRoutedComponent,
+    ResolutionRemoveAdminRoutedComponent,
+    TaskPlistAdminRoutedComponent,
+    ProjectPlistAdminRoutedComponent,
+    ProjectViewAdminRoutedComponent,
+    TaskViewAdminRoutedComponent,
+    TaskRemoveAdminRoutedComponent
   ],
   imports: [
     BrowserModule,
