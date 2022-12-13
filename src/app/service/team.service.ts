@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { baseURL } from 'src/environments/environment';
 import { TeamResponse } from '../model/team-interface';
 
 @Injectable({
@@ -19,10 +19,10 @@ export class TeamService {
       .set("page", page)
       .set("size", size);
     if (id_usertype != 0) {
-        params = params.set("usertype", id_usertype);
-      }
-   
-    let url: string = `${environment.baseURL}${this.entityURL}`;
+      params = params.set("usertype", id_usertype);
+    }
+
+    let url: string = `${baseURL}${this.entityURL}`;
     return this.oHttp.get<TeamResponse>(url, { params: params });
   }
 

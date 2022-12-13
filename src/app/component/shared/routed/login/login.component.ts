@@ -1,54 +1,59 @@
-import { IProducto } from './../../../../model/producto-interface';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AjaxService } from 'src/app/service/ajax.service.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/model/user-interface';
+import { DecodeService } from 'src/app/service/decode.service';
+import { SessionService } from 'src/app/service/session.service';
 
 @Component({
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit {
 
-  id: number = 0;
-  oProduct: any | null = null;
+  oFormularioLogin: FormGroup<IUser>;
 
   constructor(
-    private oActivatedRoute: ActivatedRoute,
-    private oHttpClient: HttpClient,
-    private oAjaxService: AjaxService
+    protected oRouter: Router,
+    private oFormBuilder: FormBuilder,
+    private oSessionService: SessionService,
+    private oDecodeService: DecodeService
   ) {
-    this.id = oActivatedRoute.snapshot.params['id'];
+    this.oFormularioLogin = <FormGroup>this.oFormBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
+
   }
 
-  ngOnInit(): void {
-    this.showDeveloper2();
+  ngOnInit() {
   }
 
-  showDeveloper() {
-    this.oHttpClient.get<any>("http://localhost:8082/developer/" + this.id)
+  login() {
+    this.oSessionService.login(this.oFormularioLogin.get('username')!.value, this.oFormularioLogin.get('password')!.value)
       .subscribe({
-        next: (data: any) => {
-          console.log(data);
-          this.oProduct = data;
+        next: (data: string) => {
+          console.log("LOGIN: llega el token", data);
+
+          console.log("DECODE=", this.oDecodeService.decode(data));
+          console.log("user=", this.oDecodeService.decode(data).name);
+
+          localStorage.setItem("token", data);
+          this.oRouter.navigate(['/home']);
         },
         error: (error: HttpErrorResponse) => {
-          console.log(error);
+          console.log(error.status, error.statusText);
         }
       })
   }
 
-  showDeveloper2() {
-    this.oAjaxService.getOne(this.id)
-      .subscribe((data: any) => {
-        console.log(data);
-        this.oProduct = data;
-      }, (error: HttpErrorResponse) => {
-        console.log(error);
-      })
-
+  loginAsAdmin() {
+    console.log("loginAsAdmin");
+    this.oFormularioLogin.controls.username.setValue("raivi");
+    this.oFormularioLogin.controls.password.setValue("andamio");
   }
-
 
 }

@@ -6,9 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './component/shared/routed/home/home.component';
 import { LoginComponent } from './component/shared/routed/login/login.component';
 import { MenuComponent } from './component/shared/unrouted/menu/menu.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AjaxService } from './service/ajax.service.service';
-import { Login2Component } from './component/shared/routed/login2/login2.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DeveloperPlistAdminRoutedComponent } from './component/application/developer/routed/admin/developer-plist-admin-routed/developer-plist-admin-routed.component';
 import { DeveloperViewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-view-admin-routed/developer-view-admin-routed.component';
 import { UsertypePlistAdminRoutedComponent } from './component/application/usertype/routed/admin/usertype-plist-admin-routed/usertype-plist-admin-routed.component';
@@ -20,14 +18,17 @@ import { PaginationUnroutedComponent } from './component/shared/unrouted/paginat
 import { PaginationService } from './service/pagination.service';
 import { TeamPlistAdminRoutedComponent } from './component/application/team/routed/admin/team-plist-admin-routed/team-plist-admin-routed.component';
 import { HelpPlistAdminRoutedComponent } from './component/application/help/routed/admin/help-plist-admin-routed.component';
+import { CryptoService } from './service/crypto.service';
+import { DecodeService } from './service/decode.service';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    MenuComponent,
-    Login2Component,
+    MenuComponent,    
     DeveloperPlistAdminRoutedComponent,
     DeveloperViewAdminRoutedComponent,
     UsertypePlistAdminRoutedComponent,
@@ -47,8 +48,8 @@ import { HelpPlistAdminRoutedComponent } from './component/application/help/rout
     FontAwesomeModule
   ],
   providers: [
-    AjaxService,
-    PaginationService
+    CryptoService,
+    DecodeService
   ],
   bootstrap: [AppComponent]
 })

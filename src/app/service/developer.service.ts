@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { baseURL } from 'src/environments/environment';
 import { DeveloperResponse } from '../model/developer-interface';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class DeveloperService {
       params = params.set("usertype", id_usertype);
     }
 
-    let url: string = `${environment.baseURL}${this.entityURL}`;
+    let url: string = `${baseURL}${this.entityURL}`;
     return this.oHttp.get<DeveloperResponse>(url, { params: params });
   }
 

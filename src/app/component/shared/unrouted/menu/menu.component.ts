@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from 'src/app/service/session.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  strUserName: string = "";
+
+  constructor(
+    oSessionService: SessionService,
+  ) {
+    this.strUserName = oSessionService.getUserName();
+  }
 
   ngOnInit() {
   }

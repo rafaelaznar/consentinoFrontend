@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CryptoService } from './crypto.service';
+import { DecodeService } from './decode.service';
+import { baseURL, httpOptions } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -9,28 +11,53 @@ import { CryptoService } from './crypto.service';
 
 export class SessionService {
 
+    private entityURL = '/session';
+    sURL: string = `${baseURL}${this.entityURL}`;
 
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json; charset=UTF-8'
-        }),
-        withCredentials: true
-    };
-
-    sURL = 'http://localhost:8082' + '/session';
 
     constructor(
         private oCryptoService: CryptoService,
-        private oHttpClient: HttpClient
+        private oHttpClient: HttpClient,
+        private oDecodeService: DecodeService
     ) { }
 
-    login(strLogin: string, strPassword: string): Observable<any> {
+    login(strLogin: string, strPassword: string): Observable<string> {
         const loginData = JSON.stringify({ username: strLogin, password: this.oCryptoService.getSHA256(strPassword) });
-        return this.oHttpClient.post<String>(this.sURL, loginData, this.httpOptions);
+        return this.oHttpClient.post<string>(this.sURL, loginData, httpOptions);
     }
 
-    check(): Observable<any> {
-        return this.oHttpClient.get<String>(this.sURL, this.httpOptions);
+    getUserName(): string {
+        if (!this.isSessionActive()) {
+            return "";
+        } else {
+            let token: string = localStorage.getItem("token");
+            return this.oDecodeService.decode(token).name;
+        }
     }
+
+    getToken(): string {
+        return localStorage.getItem("token");
+    }
+
+    isSessionActive(): Boolean {
+        let strToken: string = localStorage.getItem("token");
+        if (strToken) {
+            let oDecodedToken = this.oDecodeService.decode(strToken);
+            if (Date.now() >= oDecodedToken.exp * 1000) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    logout() {
+        localStorage.removeItem("token");
+    }
+
+
+
 
 }

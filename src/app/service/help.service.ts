@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { baseURL } from 'src/environments/environment';
 import { HelpResponse } from '../model/help-interface';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class HelpService {
       .set("page", page)
       .set("size", size);
 
-    let url: string = `${environment.baseURL}${this.entityURL}`;
+    let url: string = `${baseURL}${this.entityURL}`;
     return this.oHttp.get<HelpResponse>(url, { params: params });
   }
 
