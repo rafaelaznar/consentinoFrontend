@@ -36,11 +36,6 @@ export class LoginComponent implements OnInit {
     this.oSessionService.login(this.oFormularioLogin.get('username')!.value, this.oFormularioLogin.get('password')!.value)
       .subscribe({
         next: (data: string) => {
-          console.log("LOGIN: llega el token", data);
-
-          console.log("DECODE=", this.oDecodeService.decode(data));
-          console.log("user=", this.oDecodeService.decode(data).name);
-
           localStorage.setItem("token", data);
           this.oRouter.navigate(['/home']);
         },

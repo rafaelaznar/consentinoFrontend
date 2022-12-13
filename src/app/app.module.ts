@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './component/shared/routed/home/home.component';
 import { LoginComponent } from './component/shared/routed/login/login.component';
 import { MenuComponent } from './component/shared/unrouted/menu/menu.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { DeveloperPlistAdminRoutedComponent } from './component/application/developer/routed/admin/developer-plist-admin-routed/developer-plist-admin-routed.component';
 import { DeveloperViewAdminRoutedComponent } from './component/application/developer/routed/admin/developer-view-admin-routed/developer-view-admin-routed.component';
 import { UsertypePlistAdminRoutedComponent } from './component/application/usertype/routed/admin/usertype-plist-admin-routed/usertype-plist-admin-routed.component';
@@ -31,6 +31,7 @@ import { ProjectPlistAdminRoutedComponent } from './component/application/projec
 import { ProjectViewAdminRoutedComponent } from './component/application/project/routed/admin/project-view-admin-routed/project-view-admin-routed.component';
 import { TaskViewAdminRoutedComponent } from './component/application/task/routed/admin/task-view-admin-routed/task-view-admin-routed.component';
 import { TaskRemoveAdminRoutedComponent } from './component/application/task/routed/admin/task-remove-admin-routed/task-remove-admin-routed.component';
+import { LogoutComponent } from './component/shared/routed/logout/logout.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { TaskRemoveAdminRoutedComponent } from './component/application/task/rou
     AppComponent,
     HomeComponent,
     LoginComponent,
+    LogoutComponent,
     MenuComponent,    
     DeveloperPlistAdminRoutedComponent,
     DeveloperViewAdminRoutedComponent,
@@ -70,7 +72,8 @@ import { TaskRemoveAdminRoutedComponent } from './component/application/task/rou
   ],
   providers: [
     CryptoService,
-    DecodeService
+    DecodeService,
+    PaginationService
   ],
   bootstrap: [AppComponent]
 })

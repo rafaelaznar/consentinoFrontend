@@ -18,12 +18,14 @@ import { ProjectPlistAdminRoutedComponent } from './component/application/projec
 import { ProjectViewAdminRoutedComponent } from './component/application/project/routed/admin/project-view-admin-routed/project-view-admin-routed.component';
 import { TaskViewAdminRoutedComponent } from './component/application/task/routed/admin/task-view-admin-routed/task-view-admin-routed.component';
 import { TaskRemoveAdminRoutedComponent } from './component/application/task/routed/admin/task-remove-admin-routed/task-remove-admin-routed.component';
+import { LogoutComponent } from './component/shared/routed/logout/logout.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },  
+  { path: 'logout', component: LogoutComponent },  
   { path: 'admin/developer/plist', component: DeveloperPlistAdminRoutedComponent },
   { path: 'admin/developer/view/:id', component: DeveloperViewAdminRoutedComponent },
   { path: 'admin/developer/remove/:id', component: DeveloperRemoveAdminRoutedComponent},
