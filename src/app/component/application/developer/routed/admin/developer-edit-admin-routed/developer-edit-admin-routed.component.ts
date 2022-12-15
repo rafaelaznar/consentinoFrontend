@@ -90,4 +90,15 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
     this.myModal.show()
   }
 
+  openModalFindTeam(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("findTeam"), { //pasar el myModal como parametro
+      keyboard: false
+    })    
+    this.myModal.show()
+
+  }
+
+
+
+
 }

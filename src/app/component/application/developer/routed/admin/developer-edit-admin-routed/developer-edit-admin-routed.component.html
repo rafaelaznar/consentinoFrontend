@@ -3,7 +3,7 @@
     <div class="col">
       <h1 class="text-center mb-5">Edición de Developer</h1>
 
-      <form novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
+      <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
 
         <div class="mb-3 row">
           <label for="inputID" class="col-sm-2 col-form-label">ID</label>
@@ -132,22 +132,33 @@
         </div>
 
         <div class="mb-3 row">
-          <label for="inputTeam" class="col-sm-2 col-form-label">ID de team</label>
-          <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" id="inputTeam" formControlName="id_team">
+          <label for="inputTeam" class="col-sm-2 col-form-label">Team</label>
+          <div class="col-sm-6">
+            <div class="input-group has-validation">
+              <span class="input-group-text" id="basic-addon1">Descripcion de la ajena</span>
+              <input type="number" class="form-control" id="inputTeam" formControlName="id_team">
+              <div id="inputUsernameFeedback" class="invalid-feedback"
+                *ngIf="oForm.controls.id_team.dirty &&  oForm.controls.id_team.errors?.['required']">
+                El campo es obligatorio.
+              </div>
+              <button type="button" class="btn btn-primary" (click)="openModalFindTeam()">Buscar</button>
+            </div>
           </div>
         </div>
+
 
         <div class="mb-3 row">
           <label for="inputTeam" class="col-sm-2 col-form-label">ID de usertype</label>
           <div class="col-sm-4 has-validation">
             <input type="text" class="form-control" id="inputUsertype" formControlName="id_usertype">
+            <div id="inputUsernameFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.id_usertype.dirty &&  oForm.controls.id_usertype.errors?.['required']">
+              El campo es obligatorio.
+            </div>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary"
-          
-          >Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
 
       </form>
 
@@ -165,6 +176,26 @@
       <div class="modal-body">
 
         {{modalContent}}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="findTeam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <app-team-finder-admin-unrouted></app-team-finder-admin-unrouted>
 
       </div>
       <div class="modal-footer">
