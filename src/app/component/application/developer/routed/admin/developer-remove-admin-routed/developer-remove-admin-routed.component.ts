@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DeveloperService } from 'src/app/service/developer.service';
 
+declare let bootstrap: any;
+
 @Component({
   selector: 'app-developer-delete-admin-routed',
   templateUrl: './developer-remove-admin-routed.component.html',
@@ -12,7 +14,7 @@ import { DeveloperService } from 'src/app/service/developer.service';
 
 export class DeveloperRemoveAdminRoutedComponent implements OnInit {
 
-  id: number = 0;  
+  id: number = 0;
   msg: string = "";
 
   constructor(
@@ -23,15 +25,17 @@ export class DeveloperRemoveAdminRoutedComponent implements OnInit {
     this.id = oActivatedRoute.snapshot.params['id'];
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
   }
 
   removeOne() {
     this.oDeveloperService.removeOne(this.id).subscribe({
       next: (data: number) => {
-        this.msg = "Developer " + this.id + " removed";        
-        //open bootstrap modal here
-        alert(this.msg);
+        this.msg = "Developer " + this.id + " removed";
+        const myModal = new bootstrap.Modal('#removeInfo', {
+          keyboard: false
+        })
+        myModal.show();        
         this.oLocation.back();
       }
     })

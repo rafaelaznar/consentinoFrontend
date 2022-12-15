@@ -37,7 +37,8 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
   }
 
   getPage() {
-    this.oDeveloperService.getDevelopersPlist(this.page, this.numberOfElements, this.strTermFilter, this.id_usertypeFilter, this.sortField, this.sortDirection)
+    this.oDeveloperService.getDevelopersPlist(this.page, this.numberOfElements, 
+      this.strTermFilter, this.id_usertypeFilter, this.sortField, this.sortDirection)
       .subscribe({
         next: (resp: IPage<IDeveloper>) => {
           this.responseFromServer = resp;
