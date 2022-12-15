@@ -15,6 +15,7 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
   id: number = 0;
   oDeveloper: IDeveloper = null;
   oDeveloper2Form: IDeveloper2Form = null;
+  oDeveloper2Send: IDeveloper2Send = null;
   oForm: FormGroup<IDeveloper2Form>;
   // modal
   mimodal: string = "miModal";
@@ -46,7 +47,9 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
           surname: [data.surname, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
           lastname: [data.lastname, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
           email: [data.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-          username: [data.username, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
+          username: [data.username, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+          id_team: [data.team.id, [Validators.required]],
+          id_usertype: [data.usertype.id, [Validators.required]]
         });
       }
     })
@@ -54,26 +57,22 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
 
   onSubmit() {
     console.log("onSubmit");
-    this.oDeveloper2Form = {
-      id: new FormControl(this.oForm.value.id),
-      name: new FormControl(this.oForm.value.name),
-      surname: new FormControl(this.oForm.value.surname),
-      lastname: new FormControl(this.oDeveloper.lastname),
-      email: new FormControl(this.oForm.value.email),
-      username: new FormControl(this.oDeveloper.username),
-      team: new FormControl({
-        id: this.oDeveloper.team.id
-      }),
-      usertype: new FormControl({
-        id: this.oDeveloper.usertype.id
-      })
+    this.oDeveloper2Send = {
+      id: this.oForm.value.id,
+      name: this.oForm.value.name,
+      surname: this.oForm.value.surname,
+      lastname: this.oForm.value.lastname,
+      email: this.oForm.value.email,
+      username: this.oForm.value.username,
+      team: { id: this.oForm.value.id_team },
+      usertype: { id: this.oForm.value.id_usertype }
     }
     if (this.oForm.valid) {
-      this.oDeveloperService.updateOne(this.oDeveloper2Form).subscribe({
+      this.oDeveloperService.updateOne(this.oDeveloper2Send).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
-          this.modalTitle="ANDAMIO";
-          this.modalContent="Developer " + this.id + " updated";
+          this.modalTitle = "ANDAMIO";
+          this.modalContent = "Developer " + this.id + " updated";
           this.showModal();
         }
       })

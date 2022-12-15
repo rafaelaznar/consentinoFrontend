@@ -136,6 +136,20 @@
           </div>
         </div> 
 
+        <div class="mb-3 row">
+          <label for="inputTeam" class="col-sm-2 col-form-label">ID de team</label>
+          <div class="col-sm-4 has-validation">
+            <input type="text" class="form-control" id="inputTeam" formControlName="id_team">
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputTeam" class="col-sm-2 col-form-label">ID de usertype</label>
+          <div class="col-sm-4 has-validation">
+            <input type="text" class="form-control" id="inputUsertype" formControlName="id_usertype">
+          </div>
+        </div>
+
         <button type="submit" class="btn btn-primary"
           [disabled]="!oForm.dirty || (oForm.invalid && oForm.dirty)">Guardar</button>
 

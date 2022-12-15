@@ -16,6 +16,7 @@ export class DeveloperNewAdminRoutedComponent implements OnInit {
   id: number = 0;
   oDeveloper: IDeveloper = null;
   oDeveloper2Form: IDeveloper2Form = null;
+  oDeveloper2Send: IDeveloper2Send = null;
   oForm: FormGroup<IDeveloper2Form>;
   // modal
   mimodal: string = "miModal";
@@ -43,22 +44,18 @@ export class DeveloperNewAdminRoutedComponent implements OnInit {
 
   onSubmit() {
     console.log("onSubmit");
-    this.oDeveloper2Form = {
-      id: new FormControl(this.oForm.value.id),
-      name: new FormControl(this.oForm.value.name),
-      surname: new FormControl(this.oForm.value.surname),
-      lastname: new FormControl(this.oForm.value.surname),
-      email: new FormControl(this.oForm.value.email),
-      username: new FormControl(this.oForm.value.username),
-      team: new FormControl({
-        id: 1
-      }),
-      usertype: new FormControl({
-        id: 1
-      })
+    this.oDeveloper2Send = {
+      id: this.oForm.value.id,
+      name: this.oForm.value.name,
+      surname: this.oForm.value.surname,
+      lastname: this.oForm.value.lastname,
+      email: this.oForm.value.email,
+      username: this.oForm.value.username,
+      team: { id: this.oForm.value.id_team },
+      usertype: { id: this.oForm.value.id_usertype }
     }
     if (this.oForm.valid) {
-      this.oDeveloperService.newOne(this.oDeveloper2Form).subscribe({
+      this.oDeveloperService.newOne(this.oDeveloper2Send).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
           this.modalTitle = "ANDAMIO";

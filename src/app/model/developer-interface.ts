@@ -29,8 +29,8 @@ export interface IDeveloper2Form {
     lastname:    FormControl<string>;
     email:       FormControl<string>;
     username:    FormControl<string>;
-    team:        FormControl<IEntity>;
-    usertype:    FormControl<IEntity>;
+    id_team:        FormControl<number>;
+    id_usertype:    FormControl<number>;
 }
 export interface IDeveloper2Send {
     id:          number;

@@ -46,32 +46,12 @@ export class DeveloperService {
     return this.oHttp.delete<number>(this.url + '/' + id);
   }
 
-  updateOne(oDeveloper2Form: IDeveloper2Form): Observable<number> {
-    let oDeveloper2Send: IDeveloper2Send = {
-      id: oDeveloper2Form.id.value,
-      name: oDeveloper2Form.name.value,
-      surname: oDeveloper2Form.surname.value,
-      lastname: oDeveloper2Form.lastname.value,
-      username: oDeveloper2Form.username.value,
-      email: oDeveloper2Form.email.value,
-      team: oDeveloper2Form.team.value,
-      usertype: oDeveloper2Form.usertype.value
-    }
+  updateOne(oDeveloper2Send: IDeveloper2Send): Observable<number> {
     return this.oHttp.put<number>(this.url, oDeveloper2Send);
   }
 
 
-  newOne(oDeveloper2Form: IDeveloper2Form): Observable<number> {    
-    let oDeveloper2Send: IDeveloper2Send = {
-      id: 0,
-      name: oDeveloper2Form.name.value,
-      surname: oDeveloper2Form.surname.value,
-      lastname: oDeveloper2Form.lastname.value,
-      username: oDeveloper2Form.username.value,
-      email: oDeveloper2Form.email.value,
-      team: oDeveloper2Form.team.value,
-      usertype: oDeveloper2Form.usertype.value
-    }
+  newOne(oDeveloper2Send: IDeveloper2Send): Observable<number> {       
     return this.oHttp.post<number>(this.url, oDeveloper2Send);
   }
 
