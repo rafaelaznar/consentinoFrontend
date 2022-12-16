@@ -34,6 +34,7 @@ import { TaskRemoveAdminRoutedComponent } from './component/application/task/rou
 import { LogoutComponent } from './component/shared/routed/logout/logout.component';
 import { DeveloperDetailAdminUnroutedComponent } from './component/application/developer/unrouted/admin/developer-detail-admin-unrouted/developer-detail-admin-unrouted.component';
 import { TeamFinderAdminUnroutedComponent } from './component/application/team/unrouted/admin/team-finder-admin-unrouted/team-finder-admin-unrouted.component';
+import { FooterComponent } from './component/shared/unrouted/footer/footer.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { TeamFinderAdminUnroutedComponent } from './component/application/team/u
     HomeComponent,
     LoginComponent,
     LogoutComponent,
-    MenuComponent,    
+    MenuComponent,  
+    FooterComponent,  
     DeveloperPlistAdminRoutedComponent,
     DeveloperViewAdminRoutedComponent,
     DeveloperRemoveAdminRoutedComponent,

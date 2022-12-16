@@ -18,9 +18,14 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.oSessionService.on(
-      Events.login,(data: any) => {
+      Events.login, (data: any) => {
         this.strUserName = this.oSessionService.getUserName();
       });
-    }
+    this.oSessionService.on(
+      Events.logout, (data: any) => {
+        this.strUserName = '';
+      });
+
+  }
 
 }
