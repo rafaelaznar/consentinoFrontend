@@ -1,6 +1,6 @@
 
 import { Pageable, Sort } from "./shared-interface";
-import { Team } from "./team-interface";
+import { ITeam } from "./team-interface";
 
 
 
@@ -11,7 +11,7 @@ import { Team } from "./team-interface";
         project_description: string;
         url: string;
         tasks: number;
-        team: Team;
+        team: ITeam;
 
     }
 

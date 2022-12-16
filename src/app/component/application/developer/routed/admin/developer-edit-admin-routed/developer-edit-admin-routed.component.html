@@ -135,12 +135,19 @@
           <label for="inputTeam" class="col-sm-2 col-form-label">Team</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
-              <span class="input-group-text">Descripcion de la ajena</span>
-              <input type="number" class="form-control" formControlName="id_team" [ngClass]="{'is-valid' : 
+              <span class="input-group-text">{{teamDescription}}</span>
+              <input type="text" class="form-control" formControlName="id_team" 
+              
+              
+              (keyup)="updateTeamDescription(oForm.controls.id_team.value)"
+              
+              [ngClass]="{'is-valid' : 
               oForm.controls.id_team.dirty && !oForm.controls.id_team.errors?.['required'] &&
-               !oForm.controls.id_team.errors?.['pattern'],
+               !oForm.controls.id_team.errors?.['pattern'] && !oForm.controls.id_team.errors?.['incorrect'],
                 'is-invalid' :  (oForm.controls.id_team.dirty &&  oForm.controls.id_team.errors?.['required'] )
-                || ( oForm.controls.id_team.dirty &&  oForm.controls.id_team.errors?.['pattern'])}">
+                ||  
+                ( oForm.controls.id_team.dirty &&  oForm.controls.id_team.errors?.['incorrect'])
+              }">
               <button type="button" class="btn btn-primary" (click)="openModalFindTeam()">Buscar</button>
             </div>
             <div class="text-danger"

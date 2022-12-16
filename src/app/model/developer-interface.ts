@@ -1,7 +1,8 @@
 
 import { FormControl } from "@angular/forms";
 import { IEntity } from "./generic-types-interface";
-import { Team } from "./team-interface";
+import { ITeam } from "./team-interface";
+
 import { Usertype } from "./usertype-response-interface";
 
 
@@ -18,7 +19,7 @@ export interface IDeveloper {
     teams:       number;
     resolutions: number;
     helps:       number;
-    team:        Team;
+    team:        ITeam;
     usertype:    Usertype;
 }
 

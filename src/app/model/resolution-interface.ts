@@ -1,6 +1,6 @@
 import { IDeveloper } from "./developer-interface";
 import { Pageable, Sort } from "./shared-interface";
-import { Team } from "./team-interface";
+import { ITeam } from "./team-interface";
 
 export interface Resolution {
     id: number;
@@ -33,7 +33,7 @@ export interface Project {
     project_description: string;
     url: string;
     tasks: number;
-    team: Team;
+    team: ITeam;
 }
 export interface Task {
     id: number;

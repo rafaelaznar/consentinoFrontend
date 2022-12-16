@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseURL } from 'src/environments/environment';
-import { TeamResponse } from '../model/team-interface';
+import { ITeam, TeamResponse } from '../model/team-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,11 @@ export class TeamService {
     let url: string = `${baseURL}${this.entityURL}`;
     return this.oHttp.get<TeamResponse>(url, { params: params });
   }
+
+
+  getOne(id: number): Observable<ITeam> {    
+    return this.oHttp.get<ITeam>(`${baseURL}${this.entityURL}` + "/" + id);
+  }
+
 
 }

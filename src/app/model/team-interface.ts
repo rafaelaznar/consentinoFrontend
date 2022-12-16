@@ -1,6 +1,6 @@
 import { Pageable, Sort } from "./shared-interface";
 
-export interface Team {
+export interface ITeam {
     id:         number;
     name:       string;
     developer:  number;
@@ -9,7 +9,7 @@ export interface Team {
 }
 
 export interface TeamResponse {
-    content:          Team[];
+    content:          ITeam[];
     pageable:         Pageable;
     last:             boolean;
     totalPages:       number;

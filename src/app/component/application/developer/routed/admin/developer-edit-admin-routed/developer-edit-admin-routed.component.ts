@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDeveloper } from 'src/app/model/developer-interface';
 import { DeveloperService } from 'src/app/service/developer.service';
+import { ITeam } from 'src/app/model/team-interface';
+import { TeamService } from 'src/app/service/team.service';
 declare let bootstrap: any;
 @Component({
   selector: 'app-developer-edit-admin-routed',
@@ -22,18 +24,23 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
   myModal: any;
   modalTitle: string = "";
   modalContent: string = "";
+  // foreigns
+  teamDescription: string = "";
+  usertypeDescription: string = "";
 
   constructor(
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
     private oDeveloperService: DeveloperService,
-    private oFormBuilder: FormBuilder
+    private oFormBuilder: FormBuilder,
+    private oTeamService: TeamService
   ) {
     this.id = oActivatedRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
     this.getOne();
+    
   }
 
   getOne() {
@@ -51,6 +58,7 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
           id_team: [data.team.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
           id_usertype: [data.usertype.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
         });
+        this.updateTeamDescription(this.oDeveloper.team.id);
       }
     })
   }
@@ -93,18 +101,32 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
   openModalFindTeam(): void {
     this.myModal = new bootstrap.Modal(document.getElementById("findTeam"), { //pasar el myModal como parametro
       keyboard: false
-    })    
+    })
     this.myModal.show()
-    
+
 
   }
 
-  closeTeamModal(id_team: number) {    
+  closeTeamModal(id_team: number) {
     this.oForm.controls['id_team'].setValue(id_team);
+    this.updateTeamDescription(id_team);
     this.myModal.hide();
   }
 
-  openModalFindUsertype(): void {    
+  updateTeamDescription(id_team: number) {
+    this.oTeamService.getOne(id_team).subscribe({
+      next: (data: ITeam) => {      
+        this.teamDescription = data.name;        
+      },
+      error: (error: any) => {
+        this.teamDescription = "Team not found";        
+        this.oForm.controls['id_team'].setErrors({'incorrect': true});
+      }
+    })
+  }
+
+
+  openModalFindUsertype(): void {
 
   }
 

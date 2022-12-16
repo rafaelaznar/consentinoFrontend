@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faEye, faTrash, faUserPen } from '@fortawesome/free-solid-svg-icons';
-import { Team, TeamResponse } from 'src/app/model/team-interface';
+import { ITeam, TeamResponse } from 'src/app/model/team-interface';
 import { TeamService } from 'src/app/service/team.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export class TeamFinderAdminUnroutedComponent implements OnInit {
 
   @Output() closeEvent = new EventEmitter<number>();
 
-  private pListContent!: Team[];
+  private pListContent!: ITeam[];
   private pagesCount!: number;
   private numberPage: number = 0;
   private pageRegister: number = 5;
@@ -52,7 +52,7 @@ export class TeamFinderAdminUnroutedComponent implements OnInit {
     return this.numberPage;
   }
 
-  getPlistContent(): Team[] {
+  getPlistContent(): ITeam[] {
     return this.pListContent;
   }
 
