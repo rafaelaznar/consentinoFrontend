@@ -99,6 +99,11 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
 
   }
 
+  closeTeamModal(id_team: number) {    
+    this.oForm.controls['id_team'].setValue(id_team);
+    this.myModal.hide();
+  }
+
   openModalFindUsertype(): void {    
 
   }

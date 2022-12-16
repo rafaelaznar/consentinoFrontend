@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faEye, faTrash, faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { Team, TeamResponse } from 'src/app/model/team-interface';
 import { TeamService } from 'src/app/service/team.service';
@@ -10,7 +10,11 @@ import { Observable } from 'rxjs';
   templateUrl: './team-finder-admin-unrouted.component.html',
   styleUrls: ['./team-finder-admin-unrouted.component.css']
 })
+
 export class TeamFinderAdminUnroutedComponent implements OnInit {
+
+  @Output() closeEvent = new EventEmitter<number>();
+
   private pListContent!: Team[];
   private pagesCount!: number;
   private numberPage: number = 0;
@@ -30,18 +34,18 @@ export class TeamFinderAdminUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  getPage(){
-    this.oTeamService.getTeamsPlist(this.numberPage,this.pageRegister,this.termino,this.id_usertype)
-    .subscribe({
-      next:(resp:TeamResponse)=>{
-        this.pListContent = resp.content;
-        this.pagesCount = resp.totalPages;
-        this.numberPage = resp.number;
-      },
-      error: (err:HttpErrorResponse)=>{
-        console.log(err);
-      }
-    })
+  getPage() {
+    this.oTeamService.getTeamsPlist(this.numberPage, this.pageRegister, this.termino, this.id_usertype)
+      .subscribe({
+        next: (resp: TeamResponse) => {
+          this.pListContent = resp.content;
+          this.pagesCount = resp.totalPages;
+          this.numberPage = resp.number;
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      })
   }
 
   getPageNumber(): number {
@@ -83,9 +87,7 @@ export class TeamFinderAdminUnroutedComponent implements OnInit {
   }
 
   selectionTeam(id: number): void {
-    console.log(id);
+    this.closeEvent.emit(id);
   }
-
-
 
 }
