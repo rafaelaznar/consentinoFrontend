@@ -48,8 +48,8 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
           lastname: [data.lastname, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
           email: [data.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
           username: [data.username, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
-          id_team: [data.team.id, [Validators.required]],
-          id_usertype: [data.usertype.id, [Validators.required]]
+          id_team: [data.team.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+          id_usertype: [data.usertype.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
         });
       }
     })
@@ -95,10 +95,12 @@ export class DeveloperEditAdminRoutedComponent implements OnInit {
       keyboard: false
     })    
     this.myModal.show()
+    
 
   }
 
+  openModalFindUsertype(): void {    
 
-
+  }
 
 }
