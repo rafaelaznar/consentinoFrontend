@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDeveloper } from 'src/app/model/developer-interface';
+import { ITeam } from 'src/app/model/team-interface';
 import { DeveloperService } from 'src/app/service/developer.service';
+import { TeamService } from 'src/app/service/team.service';
 declare let bootstrap: any;
 
 @Component({
@@ -13,7 +15,8 @@ declare let bootstrap: any;
 })
 export class DeveloperNewAdminRoutedComponent implements OnInit {
 
-  id: number = 0;
+ 
+  //id: number = 0;
   oDeveloper: IDeveloper = null;
   oDeveloper2Form: IDeveloper2Form = null;
   oDeveloper2Send: IDeveloper2Send = null;
@@ -23,23 +26,31 @@ export class DeveloperNewAdminRoutedComponent implements OnInit {
   myModal: any;
   modalTitle: string = "";
   modalContent: string = "";
+  // foreigns
+  teamDescription: string = "";
+  usertypeDescription: string = "";
 
   constructor(
     private oRouter: Router,
+    private oActivatedRoute: ActivatedRoute,
     private oDeveloperService: DeveloperService,
-    private oFormBuilder: FormBuilder
+    private oFormBuilder: FormBuilder,
+    private oTeamService: TeamService
   ) {
+    //this.id = oActivatedRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
-      id: [''],
-      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
-      surname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
-    });
+      id: [""],
+      name: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+      surname: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      lastname: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      email: ["", [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      username: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+      id_team: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+      id_usertype: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
+    }); 
   }
 
   onSubmit() {
@@ -59,25 +70,54 @@ export class DeveloperNewAdminRoutedComponent implements OnInit {
         next: (data: number) => {
           //open bootstrap modal here
           this.modalTitle = "ANDAMIO";
-          this.modalContent = "Developer " + data + " created";
-          this.showModal(data);
+          this.modalContent = "Developer " + this.oDeveloper2Send.id + " created";
+          this.showModal();
         }
       })
     }
-
   }
 
-
-
-  showModal = (data) => {
+  showModal = () => {
     this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), { //pasar el myModal como parametro
       keyboard: false
     })
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      this.oRouter.navigate(['/admin/developer/view', data])
+      this.oRouter.navigate(['/admin/developer/view', this.oDeveloper2Send.id])
     })
     this.myModal.show()
+  }
+
+  openModalFindTeam(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("findTeam"), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    this.myModal.show()
+
+
+  }
+
+  closeTeamModal(id_team: number) {
+    this.oForm.controls['id_team'].setValue(id_team);
+    this.updateTeamDescription(id_team);
+    this.myModal.hide();
+  }
+
+  updateTeamDescription(id_team: number) {
+    this.oTeamService.getOne(id_team).subscribe({
+      next: (data: ITeam) => {      
+        this.teamDescription = data.name;        
+      },
+      error: (error: any) => {
+        this.teamDescription = "Team not found";        
+        this.oForm.controls['id_team'].setErrors({'incorrect': true});
+      }
+    })
+  }
+
+
+  openModalFindUsertype(): void {
+
   }
 
 }
