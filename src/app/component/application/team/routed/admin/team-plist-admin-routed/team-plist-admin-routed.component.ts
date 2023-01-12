@@ -4,6 +4,8 @@ import { ITeam, TeamResponse } from 'src/app/model/team-interface';
 import { TeamService } from 'src/app/service/team.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SessionService } from 'src/app/service/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-team-plist-admin-routed',
@@ -17,14 +19,24 @@ export class TeamPlistAdminRoutedComponent implements OnInit {
   private pageRegister: number = 5;
   private termino: string = "";
   id_usertype: number = 0;
+  strUserName: string = "";
 
   faEye = faEye;
   faUserPen = faUserPen;
   faTrash = faTrash;
 
   constructor(
-    private oTeamService: TeamService
-  ) { }
+    private oTeamService: TeamService,
+    private oSessionService: SessionService,
+    protected oRouter: Router,
+  ) { 
+    if (this.oSessionService.isSessionActive()) {
+      this.strUserName = this.oSessionService.getUserName();
+    } else {
+      this.oRouter.navigate(['/home']);
+    }
+
+  }
 
   ngOnInit(): void {
     this.getPage();

@@ -4,6 +4,8 @@ import { IDeveloper } from 'src/app/model/developer-interface';
 import { DeveloperService } from 'src/app/service/developer.service';
 import { faEye, faUserPen, faTrash, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { IPage } from 'src/app/model/generic-types-interface';
+import { Router } from '@angular/router';
+import { SessionService } from 'src/app/service/session.service';
 
 @Component({
   selector: 'app-developer-plist-admin-routed',
@@ -27,17 +29,30 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
   faTrash = faTrash;
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
+  //
+  strUserName: string = "";
+
 
   constructor(
-    private oDeveloperService: DeveloperService
-  ) { }
+    protected oRouter: Router,
+    private oDeveloperService: DeveloperService,
+    private oSessionService: SessionService,
+  ) {
+    if (this.oSessionService.isSessionActive()) {
+      this.strUserName = this.oSessionService.getUserName();
+    } else {
+      this.oRouter.navigate(['/home']);
+    }
+
+
+  }
 
   ngOnInit() {
     this.getPage();
   }
 
   getPage() {
-    this.oDeveloperService.getDevelopersPlist(this.page, this.numberOfElements, 
+    this.oDeveloperService.getDevelopersPlist(this.page, this.numberOfElements,
       this.strTermFilter, this.id_usertypeFilter, this.sortField, this.sortDirection)
       .subscribe({
         next: (resp: IPage<IDeveloper>) => {

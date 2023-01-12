@@ -22,6 +22,13 @@ export class LoginComponent implements OnInit {
     private oSessionService: SessionService,
     private oDecodeService: DecodeService
   ) {
+
+    if (this.oSessionService.isSessionActive()) {
+      this.oRouter.navigate(['/home']);      
+    } 
+
+
+
     this.oFormularioLogin = <FormGroup>this.oFormBuilder.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(5)]]

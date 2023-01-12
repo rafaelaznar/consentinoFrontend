@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmitEvent, Events, SessionService } from 'src/app/service/session.service';
 
 @Component({
@@ -8,9 +9,20 @@ import { EmitEvent, Events, SessionService } from 'src/app/service/session.servi
 })
 export class LogoutComponent implements OnInit {
 
+  strUserName: string = "";
+
   constructor(
+    protected oRouter: Router,
     private oSessionService: SessionService
-  ) { }
+  ) {
+
+    if (this.oSessionService.isSessionActive()) {
+      this.strUserName = this.oSessionService.getUserName();
+    } else {
+      this.oRouter.navigate(['/home']);
+    }
+
+  }
 
   ngOnInit() {
   }
