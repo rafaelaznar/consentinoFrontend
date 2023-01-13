@@ -5,6 +5,15 @@ import { CryptoService } from './crypto.service';
 import { DecodeService } from './decode.service';
 import { baseURL, httpOptions } from 'src/environments/environment';
 
+export enum Events {
+    login,
+    logout
+}
+
+export class EmitEvent {
+    constructor(public event: Events, public token?: string) { }
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -60,28 +69,17 @@ export class SessionService {
     on(event: Events): Observable<String> {
         return this.subject.pipe(
             filter((e: EmitEvent) => {
-                return e.name === event;
+                return e.event === event;
             }),
             map((e: EmitEvent) => {
-                return e.value;
+                return e.token;
             })
         )
-
     }
 
     emit(event: EmitEvent) {
         this.subject.next(event);
     }
 
-
 }
 
-export class EmitEvent {
-    constructor(public name: any, public value?: any) { }
-}
-
-// this works like a communication channel
-export enum Events {
-    login,
-    logout
-}
