@@ -13,7 +13,7 @@ export class SessionService {
 
     private entityURL = '/session';
     sURL: string = `${baseURL}${this.entityURL}`;
-    subject = new Subject<any>();
+    subject = new Subject<EmitEvent>();
 
     constructor(
         private oCryptoService: CryptoService,
@@ -57,32 +57,31 @@ export class SessionService {
         localStorage.removeItem("token");
     }
 
-    on(event: Events, action: any): Subscription {
-        return this.subject
-          .pipe(
+    on(event: Events): Observable<String> {
+        return this.subject.pipe(
             filter((e: EmitEvent) => {
-              return e.name === event;
+                return e.name === event;
             }),
             map((e: EmitEvent) => {
-              return e.value;
+                return e.value;
             })
-          )
-          .subscribe(action);
-      }
-    
-      emit(event: EmitEvent) {
+        )
+
+    }
+
+    emit(event: EmitEvent) {
         this.subject.next(event);
-      }
+    }
 
 
 }
 
 export class EmitEvent {
-    constructor(public name: any, public value?: any) {}
-  }
-  
-  // this works like a communication channel
-  export enum Events {
+    constructor(public name: any, public value?: any) { }
+}
+
+// this works like a communication channel
+export enum Events {
     login,
     logout
-  }
+}
