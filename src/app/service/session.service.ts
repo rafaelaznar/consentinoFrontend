@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, map, Observable, Subscription, Subject } from 'rxjs';
+import { filter, map, Observable, Subject } from 'rxjs';
 import { CryptoService } from './crypto.service';
 import { DecodeService } from './decode.service';
 import { baseURL, httpOptions } from 'src/environments/environment';
