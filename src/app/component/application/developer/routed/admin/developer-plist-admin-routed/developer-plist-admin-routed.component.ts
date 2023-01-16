@@ -43,8 +43,6 @@ export class DeveloperPlistAdminRoutedComponent implements OnInit {
     } else {
       this.oRouter.navigate(['/home']);
     }
-
-
   }
 
   ngOnInit() {

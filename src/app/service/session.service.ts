@@ -4,6 +4,7 @@ import { filter, map, Observable, Subject } from 'rxjs';
 import { CryptoService } from './crypto.service';
 import { DecodeService } from './decode.service';
 import { baseURL, httpOptions } from 'src/environments/environment';
+import { IToken } from '../model/token-interface';
 
 export enum Events {
     login,
@@ -40,7 +41,7 @@ export class SessionService {
             return "";
         } else {
             let token: string = localStorage.getItem("token");
-            return this.oDecodeService.decode(token).name;
+            return this.oDecodeService.parseJwt(token).name;
         }
     }
 
@@ -50,8 +51,8 @@ export class SessionService {
 
     isSessionActive(): Boolean {
         let strToken: string = localStorage.getItem("token");
-        if (strToken) {
-            let oDecodedToken = this.oDecodeService.decode(strToken);
+        if (strToken) {            
+            let oDecodedToken: IToken = this.oDecodeService.parseJwt(strToken);
             if (Date.now() >= oDecodedToken.exp * 1000) {
                 return false;
             } else {
