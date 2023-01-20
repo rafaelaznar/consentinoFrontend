@@ -22,9 +22,11 @@ export class DeveloperService {
 
   getDevelopersPlist(page: number, size: number, termino: string, id_usertype: number, strSortField: string, strOrderDirection: string): Observable<IPage<IDeveloper>> {
     let params = new HttpParams()
-      .set("filter", termino)
       .set("page", page)
       .set("size", size);
+    if (termino) {
+      params = params.set('filter', termino.trim());
+    }
     if (id_usertype != 0) {
       params = params.set("usertype", id_usertype);
     }
@@ -51,7 +53,7 @@ export class DeveloperService {
   }
 
 
-  newOne(oDeveloper2Send: IDeveloper2Send): Observable<number> {       
+  newOne(oDeveloper2Send: IDeveloper2Send): Observable<number> {
     return this.oHttp.post<number>(this.url, oDeveloper2Send);
   }
 
