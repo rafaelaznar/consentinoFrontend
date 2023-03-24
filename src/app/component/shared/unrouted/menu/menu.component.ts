@@ -9,21 +9,25 @@ import { Events, SessionService } from 'src/app/service/session.service';
 export class MenuComponent implements OnInit {
 
   strUserName: string = "";
+  strUserType: string = "";
 
   constructor(
     private oSessionService: SessionService,
   ) {
     this.strUserName = oSessionService.getUserName();
+    this.strUserType = oSessionService.getUserType();
   }
 
   ngOnInit() {
     this.oSessionService.on(Events.login).subscribe(
       (data: string) => {
         this.strUserName = this.oSessionService.getUserName();
+        this.strUserType = this.oSessionService.getUserType();
       });
     this.oSessionService.on(Events.logout).subscribe(
       (data: string) => {
         this.strUserName = '';
+        this.strUserType = '';
       });
 
   }

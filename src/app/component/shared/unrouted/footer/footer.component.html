@@ -1,12 +1,15 @@
-<div
-  class="navbar fixed-bottom d-flex flex-column flex-md-row text-center text-md-start justify-content-center py-4 px-4 px-xl-5 bg-primary">
-  <div class="text-white mb-3 mb-md-0">
-    ANDAMIO: MIT licensed 2022
+<footer>
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        CONSENTINO FRONTEND: MIT licensed 2022        
+        <div class="text-white px-2 mb-3 mb-md-0" *ngIf="strUserName">
+          Logged in as: {{strUserName}}
+        </div>
+        <div class="text-white px-2 mb-3 mb-md-0" *ngIf="!strUserName">
+          (No session active)
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="text-white px-2 mb-3 mb-md-0" *ngIf="strUserName">
-    Logged in as: {{strUserName}}
-  </div>
-  <div class="text-white px-2 mb-3 mb-md-0" *ngIf="!strUserName">
-    (No session active)
-  </div>
-</div>
+</footer>

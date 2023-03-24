@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'andamioClient';
+  title = 'consentinoFRONTEND';
   constructor() {
     console.log("app.component: token", localStorage.getItem("token"));
   }

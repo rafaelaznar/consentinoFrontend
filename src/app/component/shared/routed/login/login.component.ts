@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/model/user-interface';
+import { ILogin } from 'src/app/model/login-interface';
 import { DecodeService } from 'src/app/service/decode.service';
 import { EmitEvent, Events, SessionService } from 'src/app/service/session.service';
 
@@ -14,7 +14,7 @@ import { EmitEvent, Events, SessionService } from 'src/app/service/session.servi
 
 export class LoginComponent implements OnInit {
 
-  oFormularioLogin: FormGroup<IUser>;
+  oFormularioLogin: FormGroup<ILogin>;
 
   constructor(
     protected oRouter: Router,
@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
 
   loginAsAdmin() {
     console.log("loginAsAdmin");
-    this.oFormularioLogin.controls.username.setValue("raivi");
-    this.oFormularioLogin.controls.password.setValue("andamio");
+    this.oFormularioLogin.controls.username.setValue("rafa");
+    this.oFormularioLogin.controls.password.setValue("rafael");
   }
 
 }

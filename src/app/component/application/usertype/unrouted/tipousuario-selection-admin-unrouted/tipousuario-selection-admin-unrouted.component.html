@@ -1,0 +1,59 @@
+<div class="row justify-content-between my-3">
+    <div class="col-md text-end">
+        <h4 class="text-muted">{{oPage.totalElements| number:'1.0-0'}} {{oMetadataService.getName(strEntity+'s')}}
+        </h4>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md table-responsive-md">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr class="text-center align-middle">
+                    <th (click)="doSetOrder('id')">
+                        <i class="fas fa-key"></i> ID
+                        <i class="fas fa-arrow-up" *ngIf="strSortField == 'id' && strSortDirection == 'asc'"></i>
+                        <i class="fas fa-arrow-down" *ngIf="strSortField == 'id' && strSortDirection == 'desc'"></i>
+                    </th>
+                    <th (click)="doSetOrder('nombre')">
+                        <i class="fas fa-key"></i> Name
+                        <i class="fas fa-arrow-up" *ngIf="strSortField == 'nombre' && strSortDirection == 'asc'"></i>
+                        <i class="fas fa-arrow-down" *ngIf="strSortField == 'nombre' && strSortDirection == 'desc'"></i>
+                    </th>
+                    <th *ngIf="mode">
+                        <i class="fas fa-user"></i> Users
+                    </th>
+                    <th>
+                        <div action_column_title>
+                            <i class="fas fa-check"></i> Select
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let oTipousuarioRow of oPage.content" class="align-middle">
+                    <td class="text-end">{{ oTipousuario.id }}</td>
+                    <td>{{ oTipousuario.nombre }}</td>
+                    <td *ngIf="mode" style="text-align: center">
+                        <button class="btn btn-outline-secondary btn-sm"
+                            [routerLink]="['/administrador','usuario','plist','tipousuario',oTipousuario.id]"
+                            [disabled]="oTipousuario?.usuarios<=0">
+                            {{ oTipousuario?.usuarios }}
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-success" (click)="onSelection(oTipousuarioRow.id)">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </td>
+
+
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

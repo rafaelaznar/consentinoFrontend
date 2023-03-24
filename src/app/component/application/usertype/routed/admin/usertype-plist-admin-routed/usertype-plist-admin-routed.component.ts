@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Usertype, UsertypeResponse } from 'src/app/model/usertype-response-interface';
+import { IOrder } from 'src/app/model/model-interfaces';
+import { IUsertypePage } from 'src/app/model/usertype-interface';
 import { UsertypeService } from 'src/app/service/usertype.service';
 
 @Component({
@@ -10,50 +11,57 @@ import { UsertypeService } from 'src/app/service/usertype.service';
 })
 export class UsertypePlistAdminRoutedComponent implements OnInit {
 
-  constructor( private oUserTypeService: UsertypeService  ) { }
+  constructor(private oUserTypeService: UsertypeService) { }
 
-  private pListContent!: Usertype[];
-  private pagesCount!: number;
-  private numberPage : number= 0;
-  private pageRegister: number = 5;
+
+  oPage: IUsertypePage;
 
   ngOnInit(): void {
-    this.getPlist();
+    this.getPage();
   }
 
-  getPlist(){
-    this.oUserTypeService.getUsersTypePlist(this.numberPage, this.pageRegister)
-    .subscribe({
-      next: (resp : UsertypeResponse) =>{
-        this.pListContent = resp.content;
-        this.pagesCount = resp.totalPages;
-      },
-      error: (err: HttpErrorResponse) =>{
-        console.log(err);
-      }
-    })
+  getPage() {
+    this.oUserTypeService.getPage(this.oPage.number, this.oPage.size, this.oPage.strSortField, this.oPage.strSortDirection, this.oPage.strFilter)
+      .subscribe({
+        next: (oPage: IUsertypePage) => {
+          this.oPage = oPage;
+          this.oPage.error = null;
+
+          this.oPage.strFilteredMessage = "";
+
+          if (this.oPage.totalPages > 0) {
+            if (this.oPage.number > this.oPage.totalPages - 1) {
+              this.oPage.number = this.oPage.totalPages - 1;
+              this.getPage();
+            }
+          }
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      })
   }
 
-  getPlistContent(): Usertype[]{
-    return this.pListContent;
+  onSetPage = (nPage: number) => {
+    this.oPage.number = nPage - 1; //pagination component starts at 1, but spring data starts at 0
+    this.getPage();
+    return false;
   }
 
-  getpagesCount(): number{
-    return this.pagesCount;
+  onSetRpp(nRpp: number) {
+    this.oPage.size = nRpp;
+    this.getPage();
   }
 
-  getNumberPage( e: number ){
-    this.numberPage = e;
-    this.getPlist();
+  onSetFilter(strFilter: string) {
+    this.oPage.strFilter = strFilter;
+    this.getPage();
   }
 
-  getPageRegister():number{
-    return this.pageRegister;
-  }
-
-  setPageRegister( registerPage: number ){
-    this.pageRegister = registerPage;
-    this.getPlist();
+  onSetOrder(order: IOrder) {
+    this.oPage.strSortField = order.sortField;
+    this.oPage.strSortDirection = order.sortDirection;
+    this.getPage();
   }
 
 }

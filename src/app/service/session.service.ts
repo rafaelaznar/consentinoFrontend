@@ -45,13 +45,22 @@ export class SessionService {
         }
     }
 
+    getUserType(): string {
+        if (!this.isSessionActive()) {
+            return "";
+        } else {
+            let token: string = localStorage.getItem("token");
+            return this.oDecodeService.parseJwt(token).type;
+        }
+    }
+
     getToken(): string {
         return localStorage.getItem("token");
     }
 
     isSessionActive(): Boolean {
         let strToken: string = localStorage.getItem("token");
-        if (strToken) {            
+        if (strToken) {
             let oDecodedToken: IToken = this.oDecodeService.parseJwt(strToken);
             if (Date.now() >= oDecodedToken.exp * 1000) {
                 return false;

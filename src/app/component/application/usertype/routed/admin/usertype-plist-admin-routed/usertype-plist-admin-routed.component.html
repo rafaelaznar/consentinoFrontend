@@ -6,13 +6,13 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nombre</th>
+            <th>Name</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let usertype of this.getPlistContent()">
-            <td>{{usertype.id}}</td>
-            <td>{{usertype.name}}</td>
+          <tr *ngFor="let oUsertype of oPage.content" class="align-middle">
+            <td>{{oUsertype.id}}</td>
+            <td>{{oUsertype.name}}</td>
           </tr>
         </tbody>
       </table>
